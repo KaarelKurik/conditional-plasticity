@@ -33,22 +33,6 @@ induced by those vertices $v in G$ for which $exists i in [n], deg(pi_i v) = 2$ 
 
 For each vertex $x in E$ we define $T(x) = {y in E : forall i in [n], pi_i y = pi_i x or pi_i y adj pi_i x}$. It may be noted that $T(x)$ is a clique of $2^n$ elements.
 
-
-(Maybe doesn't have to be automorphism, can
-rephrase in terms of set map $s arrow.bar "Neighbors of" s$, turns out
-it should work whenever each $G_i$ is a disjoint union of complete bipartite
-graphs. For further lemmas, $G_i$ may require at least two disconnected components, or at least must not be a star graph.)
-
-Okay so, the reason why general bipartite graphs doesn't quite work
-is the base case. The statement needs to adapt somehow.
-
-Quite plausibly this is all a very roundabout way of talking about
-the automorphisms of the hypercube graph.
-
-The truly special thing that sets this business apart from talking about
-the automorphisms of $K_(2^n)$ (of which there are a lot more than we want to consider) is that we have certain "satellite vertices" or "partial vertices" hanging off of the main clique, which force the automorphism structure to be more rigid than it would be otherwise. (!!) So something like, if we have an injective graph homomorphism $G -> G'$ such that $G$ is something like $K_(2^n)$ with satellite vertices, then the homomorphism will look like a hypercube
-automorphism on the $K_(2^n)$ subgraph.
-
 We would like to prove the following theorem:
 
 #theorem[Let $f : G -> G$ be an injective homomorphism. Then there exists a permutation $sigma: [n]->[n]$ and a family of local isomorphisms $f_i : S_i -> S_(sigma(i))$ such that for all $x in G$ and all $i in [n]$, we have $pi_i x in S_i => pi_(sigma(i))f(x) = f_i (pi_i x)$.] <thm:factors>
