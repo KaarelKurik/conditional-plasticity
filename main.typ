@@ -2,6 +2,7 @@
 #show: thmrules.with(qed-symbol: $square$)
 
 #set par(justify: true)
+#set page(numbering: "1")
 
 #let card(x) = $abs(#x)$
 
@@ -151,12 +152,10 @@ This can be applied to prove some more natural theorems concerning plasticity.
 We begin with some graph-theoretic lemmas mirroring the conditions of @thm:natural.
 
 #lemma[
-  Let $ihom, G, ihom_i, S, E$ be as in @thm:factors. If $E subset.eq ihom(E)$ or $S subset.eq ihom(S)$, then $ihom$ is an isomorphism.
-]
-
-#lemma[
-  Each $ihom_i$ is a bijection.
+  Let $ihom, G, ihom_i, S, E$ be as in @thm:factors. If $E subset.eq ihom(E)$ or $S subset.eq ihom(S)$, then each $ihom_i$ is a bijection.
 ] <lem:bijective-factors>
+
+Note that the conditions $S subset.eq ihom(S)$ and $E subset.eq ihom(E)$ in @lem:bijective-factors are equivalent to $lip(S) subset.eq S$ and $lip(E) subset.eq E$ respectively in the setting of @thm:natural.
 
 #proof[
   It is enough to show that each $ihom_i$ is surjective, i.e. that $y in ihom_i (S_i)$ for any $y in S_(sigma(i))$.
@@ -171,7 +170,7 @@ We begin with some graph-theoretic lemmas mirroring the conditions of @thm:natur
 ]
 
 #lemma[
-  $S subset.eq ihom(S)$ implies that $E subset.eq ihom(E)$.
+  Under the conditions of @lem:bijective-factors, $S subset.eq ihom(S)$ implies that $E subset.eq ihom(E)$.
 ]
 
 #proof[
@@ -183,10 +182,10 @@ We begin with some graph-theoretic lemmas mirroring the conditions of @thm:natur
   // pushing the formalism at some point.
 ]
 
-We now proceed with more geometric results for which a graph-theoretic analogue has not been recovered.
+We now proceed with more geometric results for which a graph-theoretic analogue has not been recovered. Whenever @lem:bijective-factors is applicable, we define $lip_i = ihom_i^(-1)$ in analogy with the relation $lip = ihom^(-1)$.
 
 #definition[
-  Given a $1$-Lipschitz bijection $lip : B_Z -> B_Z$, the non-contractive map $ihom := lip^(-1)$ is said to be _homogeneous in $k$ components_ if, for all $J subset.eq [n]$ with $card(J) <= k$ and for all $x in B_Z$ such that $x$ has norm $1$ on components $[n] - J$, we have $forall i in [n], pi_sigma(i) ihom(x) = norm(pi_i x)ihom_i ((pi_i x)/norm(pi_i x))$, where the expression on the right-hand side is understood to be 0 whenever $norm(pi_i x) = 0$. Analogously, we say that $lip$ is homogeneous in $k$ components when, for the same $J$ and $x$, we have $forall i in [n], pi_(sigma^(-1)(i)) lip(x) = norm(pi_i x) lip_i ((pi_i x)/norm(pi_i x))$.
+  Given a $1$-Lipschitz bijection $lip : B_Z -> B_Z$ and $ihom = lip^(-1)$ satisfying the conditions of @lem:bijective-factors, $ihom$ is said to be _homogeneous in $k$ components_ if, for all $J subset.eq [n]$ with $card(J) <= k$ and for all $x in B_Z$ such that $x$ has norm $1$ on components $[n] - J$, we have $forall i in [n], pi_sigma(i) ihom(x) = norm(pi_i x)ihom_i ((pi_i x)/norm(pi_i x))$, where the expression on the right-hand side is understood to be 0 whenever $norm(pi_i x) = 0$. Analogously, we say that $lip$ is homogeneous in $k$ components when, for the same $J$ and $x$, we have $forall i in [n], pi_(sigma^(-1)(i)) lip(x) = norm(pi_i x) lip_i ((pi_i x)/norm(pi_i x))$.
 ]
 
 = Auxiliary results
