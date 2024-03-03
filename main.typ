@@ -124,6 +124,35 @@ We would like to extend this slightly to the case of vertices outside of $E$ to 
 Since for each $x_i in S_i$ there exists an $x in E$ with $pi_i x = x_i$, @lem:interior concludes our proof of @thm:factors.
 
 
+= Applications to plasticity
+
+We begin with a straightforward corollary of @thm:factors.
+
+#theorem[
+  Let $Z := plus.circle.big_(i in [n]) X_i$ and let $G : B_Z -> B_Z$ be a non-contractive function. Then there is some permutation $sigma : [n] -> [n]$ and a family of non-contractive functions $g_i : S_i -> S_(sigma(i))$ such that for all points $x in B_Z$ and all $i in [n]$ we have 
+  $pi_i x in S_i => pi_(sigma(i)) G(x) = g_i (pi_i x)$.
+] <thm:banach-factors>
+
+@thm:banach-factors follows from applying @thm:factors to the graph with vertices in $B_Z$, edges ${{x,x'} : norm(x-x')=2}$ and $G$ as the injective homomorphism.
+
+This can be applied to prove some more natural theorems concerning plasticity.
+
+#theorem[
+  Let $F: B_Z -> B_Z$ be a 1-Lipschitz bijection. If $F$ maps extreme points to extreme points, or $F(S_Z) subset.eq S_Z$, then $F$ is an isometry.
+] <thm:natural>
+
+// cite Leo here
+
+Let $F$ be as in the statement of @thm:natural. Define $G$ to be its inverse
+function. Since $G$ satisfies @thm:banach-factors, we can define the permutation $sigma$ and the family of functions $g_i : S_i -> S_(sigma(i))$ as given by @thm:banach-factors.
+
+#lemma[
+  Under the assumptions of @thm:natural, each $g_i$ is a bijection.
+]
+
+#proof[
+  
+]
 
 = Auxiliary results
 
