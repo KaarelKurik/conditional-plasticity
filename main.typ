@@ -101,7 +101,9 @@ From here on, $f colon G -> G$ be an injective homomorphism and let $x_0 in E$. 
 
 @one-component can be interpreted as saying that $f$ descends to an injective homomorphism of type $T(x_0) -> yfam$, where the domain and codomain are interpreted as subgraphs of $G' = square.big_(i in [n]) G_i$, which is the Cartesian product of the component graphs $G_i$. We now desire to show that this is a componentwise isomorphism.
 
-If $f$ failed to be an isomorphism in $G'$ between $T(x_0)$ and $yfam$, then there would be some $x_i$ for which $deg(f(x_i)) > deg(x_i) = n$, since an injective homomorphism with finite codomain can only fail to be an isomorphism by adding edges. By the pigeonhole principle, this would imply there is some index $j in [n]$ and indices $u != v in [2^n]$ such that $pi_j f(x_i) adj pi_j f(x_u), pi_j f(x_v)$. From @one-component, this would imply that $pih_j f(x_i) = pih_j f(x_u) = pih_j f(x_v)$, and since $G_j$ has maximal vertex degree 2, we also have that $pi_j f(x_u) = pi_j f(x_v)$. Consequently, $f(x_u) = f(x_v)$, from which $x_u = x_v$, contradicting our choice of $u, v$.
+// If $f$ failed to be an isomorphism in $G'$ between $T(x_0)$ and $yfam$, then there would be some $x_i$ for which $deg(f(x_i)) > deg(x_i) = n$, since an injective homomorphism with finite codomain can only fail to be an isomorphism by adding edges. By the pigeonhole principle, this would imply there is some index $j in [n]$ and indices $u != v in [2^n]$ such that $pi_j f(x_i) adj pi_j f(x_u), pi_j f(x_v)$. From @one-component, this would imply that $pih_j f(x_i) = pih_j f(x_u) = pih_j f(x_v)$, and since $G_j$ has maximal vertex degree 2, we also have that $pi_j f(x_u) = pi_j f(x_v)$. Consequently, $f(x_u) = f(x_v)$, from which $x_u = x_v$, contradicting our choice of $u, v$.
+
+We first show that $f$ is an isomorphism between $T(x_0)$ and $yfam$ in $G'$. Since $T(y_0)$ is closed under the operation of swapping any component for its adjacent one, and every member of $yfam$ is related to $y_0$ by a sequence of such operations (by repeated application of @one-component along a path from $x_0$ to the preimage of the desired member of $yfam$), we must have that $yfam$ is a subgraph of $T(y_0)$ in $G'$. This implies that $deg(y_i) <= n$ for each $i in [2^n]$, and by the fact that an injective homomorphism cannot decrease degree, we must have that $deg(y_i) = n$, from which $yfam = T(y_0)$ in $G'$. Since every edge $x_i adj x_j$ induces an edge $y_i adj y_j$, and $deg(x_i) = deg(y_i)$, we must have that every edge in $T(y_0)$ is induced by an edge in $T(x_0)$, from which $x_i adj x_j <=> y_i adj y_j$. Since $f$ is a bijection, this is sufficient for it to be an isomorphism.
 
 That this isomorphism arises from a componentwise isomorphism (up to permutation of components) follows from e.g. Theorem 6.8 in @handbook.
 
@@ -151,7 +153,7 @@ function. Since $G$ satisfies @thm:banach-factors, we can define the permutation
 ]
 
 #proof[
-  
+
 ]
 
 = Auxiliary results
