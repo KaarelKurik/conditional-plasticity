@@ -74,7 +74,7 @@ The analogies in notation between the Banach space structure and the graph struc
 
 The remaining analogies are left for the reader to verify.
 
-Throughout @sec:main, every theorem and lemma shall be annotated according to whether it requires aspects of the Banach space structure, or whether the graph theoretic analogue is sufficient.
+Throughout @sec:main, every theorem and lemma shall have an annotation indicating whether it requires the Banach space structure. If the graph theoretic structure is sufficient, there will be no annotation.
 
 == Graph theoretic results
 
@@ -83,9 +83,9 @@ Throughout @sec:main, every theorem and lemma shall be annotated according to wh
 
 We would like to prove the following theorem:
 
-#theorem[(Graph) Let $ihom : bcn -> bcn$ be an injective homomorphism. Then there exists a permutation $sigma: [n]->[n]$ and a family of local isomorphisms $g_i : S_i -> S_(sigma(i))$ such that for all $x in bcn$ and all $i in [n]$, we have $x_i in S_i => pi_(sigma(i))ihom(x) = ihom_i (pi_i x)$.] <thm:factors>
+#theorem[Let $ihom : bcn -> bcn$ be an injective homomorphism. Then there exists a permutation $sigma: [n]->[n]$ and a family of local isomorphisms $g_i : S_i -> S_(sigma(i))$ such that for all $x in bcn$ and all $i in [n]$, we have $x_i in S_i => pi_(sigma(i))ihom(x) = ihom_i (pi_i x)$.] <thm:factors>
 
-#lemma[(Graph)
+#lemma[
   A clique of $2^n-1$ points in $bcn$ has at most one extension
 to a clique of $2^n$ points.
 ] <lem:clique-ext>
@@ -124,7 +124,6 @@ From here on, let $x_0 in E$. Let $xfam = T(x_0)$ and define $y_i = ihom(x_i)$.
 
 
 #lemma[
-  (Graph)
   $ihom$ is an $E_square$-homomorphism.
   ] <one-component>
 
@@ -151,7 +150,7 @@ From here on, let $x_0 in E$. Let $xfam = T(x_0)$ and define $y_i = ihom(x_i)$.
   Since $y_a$ and $y_b$ are adjacent in at least one component and differ in at most one component, these bounds must be saturated and exactly one component accounts for both, which is some $m$ at which $pi_(m) y_a adj pi_(m) y_b$ and $pih_(m) y_a = pih_(m) y_b$ --- consequently $y_a adj' y_b$.
 ]
 
-#lemma[(Graph)
+#lemma[
   There is a permutation $sigma: [n]->[n]$ and a family of local isomorphisms $ihom_i : S_i -> S_sigma(i)$ such that for $e in E$, we have $pi_sigma(i) ihom(e) = ihom_i (pi_i e)$.
 ]
 
@@ -168,7 +167,7 @@ Since these isomorphisms must glue compatibly across all of $E$, we have that th
 
 We would like to extend this slightly to the case of vertices outside of $E$ to finish our proof of @thm:factors.
 
-#lemma[(Graph)
+#lemma[
   Let $q in B$ and $i in [n]$ be such that $pi_i q = pi_i x_0$. Then $pi_sigma(i) ihom(q) = pi_sigma(i) ihom(x_0) = ihom_i (pi_i x_0)$.
   ] <lem:interior>
 
@@ -204,7 +203,7 @@ This can be applied to prove some more natural theorems concerning plasticity.
 
 We begin with some graph-theoretic lemmas mirroring the conditions of @thm:natural.
 
-#lemma[(Graph)
+#lemma[
   If $S subset.eq ihom(S)$ or $E subset.eq ihom(E)$, then each $ihom_i$ is a bijection.
 ] <lem:bijective-factors>
 
@@ -222,7 +221,7 @@ Note that the conditions $S subset.eq ihom(S)$ and $E subset.eq ihom(E)$ in @lem
   Fix a point $q in E$ such that $pi_sigma(i) q = y$. Since $q in E$, there is some $x in E$ for which $ihom(x) = q$, and by @thm:factors, we have $ihom_i (pi_i x) = pi_sigma(i) ihom(x) = y$.
 ]
 
-#lemma[(Graph)
+#lemma[
   On the assumptions of @lem:bijective-factors, $S subset.eq ihom(S)$ implies that $E subset.eq ihom(E)$.
 ]
 
@@ -241,7 +240,7 @@ We now proceed with more geometric results for which a graph-theoretic analogue 
 ]
 // This entire homogeneity business could use some reworking to have no reliance
 // on a division by zero.
-#lemma[
+#lemma[(Banach)
   The function $ihom$ is homogeneous in $k$ components if and only if
   $lip$ is also.
 ]
