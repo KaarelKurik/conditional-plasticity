@@ -35,23 +35,23 @@ We adopt the conventions that $0 in NN$ and $[n] = {i in NN : i < n}$.
 
 = Primary results <sec:main>
 
-== Conventions, notation
+== Conventions, notation <sec:main_notation>
 
 Throughout @sec:main, we consider the following structure and certain weakenings thereof, explained below:
-- $n$ is a fixed value in $NN$ such that $n >= 2$.
+- $n$ is a fixed value in $NN$ such that $n >= 1$.
 - $X_i$ is a family of strictly convex nontrivial Banach spaces, indexed by $i in [n]$.
 - $B_i, S_i$ are the unit ball and sphere of $X_i$ respectively.
 - $Z = plus.circle.big_(i in [n]) X_i$ is the direct sum of the family $X_i$ endowed with the $infinity$-norm, i.e. if $z = (x_0, dots, x_(n-1)) in Z$, then $norm(z) = max_(i in [n]) norm(x_i)$.
-- $pi_i : Z -> X_i$ is the projection onto the $i$-th component of $Z$. We will sometimes write $z_i$ for $pi_i z$.
+- $pi_i : Z -> X_i$ is the projection onto the $i$-th component of $Z$. We will sometimes write $z_i$ for $pi_i z$ when this is unambiguous.
 - More generally, $pi_i$ should be understood as the projection onto the $i$-th component of _any_ structure with components indexed by a set containing $i$.
 - $pih_i : Z -> hat(X)_i$ is the complementary projection of the $i$-th component, where $hat(X)_i = plus.big.circle_(j in [n] \\ {i} )X_j$. For all $j in [n] \\ i$, we have that $pi_j z = pi_j pih_i z$, and $pi_i pih_i z$ is ill-defined.
 - $B_Z, S_Z$ are the unit ball and sphere of $Z$ respectively.
 - $E subset.eq B_Z$ is the set of extreme points in $B_Z$. This can be shown to be those $z in S_Z$ for which $forall i in [n], z_i in S_i$.
-- $G : B_Z -> B_Z$ is a non-contractive injection from $B_Z$ to itself.
-- $F : B_Z -> B_Z$ is a 1-Lipschitz bijection, such that $F = G^(-1)$ if $G$ is invertible.
+- $ihom : B_Z -> B_Z$ is a non-contractive injection from $B_Z$ to itself.
+- $lip : B_Z -> B_Z$ is a 1-Lipschitz bijection, such that $lip = ihom^(-1)$ if $ihom$ is invertible.
 - $sigma : [n] -> [n]$ is a permutation of $[n]$.
-- $g_i : S_i -> S_sigma(i)$ is a non-contractive injection satisfying $G(x)_sigma(i) = g_i (x_i)$. Proving that such functions exist is one of the central results of this article.
-- $f_i : S_sigma(i) -> S_i$ is the inverse of $g_i$, whenever the inverse exists.
+- $g_i : S_i -> S_sigma(i)$ is a non-contractive injection satisfying $pi_i x in S_i => ihom(x)_sigma(i) = ihom_i (pi_i x)$. Proving that such functions exist is one of the central results of this article.
+- $lip_i : S_sigma(i) -> S_i$ is the inverse of $ihom_i$, whenever the inverse exists.
 
 Many of our results require no geometric considerations, and thus can be carried out on an analogous graph structure:
 
@@ -62,10 +62,10 @@ Many of our results require no geometric considerations, and thus can be carried
 - $S$ is the set of those vertices $s in B$ for which $exists i in [n], s_i in S_i$. $S_* <= B_*$ and $S_square <= B_square$ are the respective induced subgraphs.
 - The adjacency of vertices $u,v in B_*$ is denoted $u adj v$, and adjacency in $B_square$ is denoted $u adj' v$.
 - The adjacency of vertices $u,v in B_i$ is denoted either $u adj v$ or $u adj' v$, since the two product structures agree on $B_i$.
-- $G : B_star -> B_star$ is an injective graph homomorphism. It will be shown that this descends to a homomorphism $G : B_square -> B_square$, so these will not be distinguished in notation.
-- $F : B_star -> B_star$ is the set-theoretic inverse of $G$ whenever $G$ is invertible.
-- $g_i : S_i -> S_sigma(i)$ is an injective homomorphism satisfying $G(x)_sigma(i) = g_i (x_i)$.
-- $f_i : S_sigma(i) -> S_i$ is the set-theoretic inverse of $g_i$, whenever this exists.
+- $ihom : B_star -> B_star$ is an injective graph homomorphism.
+- $lip : B_star -> B_star$ is the set-theoretic inverse of $ihom$ whenever $ihom$ is invertible.
+- $ihom_i : S_i -> S_sigma(i)$ is a local isomorphism satisfying $pi_i x in S_i => ihom(x)_sigma(i) = ihom_i (pi_i x)$.
+- $lip_i : S_sigma(i) -> S_i$ is the set-theoretic inverse of $ihom_i$, whenever this exists.
 
 The analogies in notation between the Banach space structure and the graph structure are motivated by these identifications:
 - Given points $a,b in B_i$ with $B_i$ the unit ball of $X_i$, we may construct the graph $B_i$ by setting $a adj b$ iff $norm(a-b) = 2$. This will be a disconnected graph with maximal vertex degree exactly 1.
@@ -78,92 +78,98 @@ Throughout @sec:main, every theorem and lemma shall be annotated according to wh
 
 == Graph theoretic results
 
-Let $G$ be the co-normal product of $n$ graphs $G_i, i in [n]$, where each $G_i$ has
-maximal vertex degree exactly 1 and at least two connected components. Define $S subset.eq G$ to be the subgraph
-induced by those vertices $v in G$ for which $exists i in [n], deg(pi_i v) = 2$ and let $E subset.eq S$ be the subgraph induced by $forall i in [n], deg(pi_i v) = 2$. We also define $S_i = {v in G_i : deg(v) = 2}$.
-
-For each vertex $x in E$ we define $T(x) = {y in E : forall i in [n], pi_i y = pi_i x or pi_i y adj pi_i x}$. It may be noted that $T(x)$ is a clique of $2^n$ elements.
+#let bcn = $B_*$
+#let bbox = $B_square$
 
 We would like to prove the following theorem:
 
-#theorem[Let $ihom : G -> G$ be an injective homomorphism. Then there exists a permutation $sigma: [n]->[n]$ and a family of local isomorphisms $ihom_i : S_i -> S_(sigma(i))$ such that for all $x in G$ and all $i in [n]$, we have $pi_i x in S_i => pi_(sigma(i))ihom(x) = ihom_i (pi_i x)$.] <thm:factors>
+#theorem[(Graph) Let $ihom : bcn -> bcn$ be an injective homomorphism. Then there exists a permutation $sigma: [n]->[n]$ and a family of local isomorphisms $g_i : S_i -> S_(sigma(i))$ such that for all $x in bcn$ and all $i in [n]$, we have $x_i in S_i => pi_(sigma(i))ihom(x) = ihom_i (pi_i x)$.] <thm:factors>
 
-#lemma[
-  A clique of $2^n-1$ points in $G$ has at most one extension
+#lemma[(Graph)
+  A clique of $2^n-1$ points in $bcn$ has at most one extension
 to a clique of $2^n$ points.
 ] <lem:clique-ext>
 
 #proof[
   Induction on $n$. The case with $n=1$ is clear by inspection.
 
-  First note that if the statement is true for a graph $G$, then the maximal clique size for $G$ is at most $2^n$. If there were a clique of $2^n+1$ points, then every subclique of size $2^n - 1$ would have at least two distinct extensions to a clique of size $2^n$.
+  First note that if the statement is true for a graph $bcn$, then the maximal clique size for $bcn$ is at most $2^n$. If there were a clique of $2^n+1$ points, then every subclique of size $2^n - 1$ would have at least two distinct extensions to a clique of size $2^n$.
 
   Consider an enumerated family $(x_i)_(i in [2^n])$ of pairwise adjacent
-  vertices in $G$. We want to show that any vertex $q in G$ that is
+  vertices in $bcn$. We want to show that any vertex $q in bcn$ that is
   adjacent to all vertices $x_i$ with $i > 0$ is equal to $x_0$.
 
-  Partition the family into $A union.dot B$ such that $A$ is any maximal
-  subset of the family such that $pi_0 A$ is an edgeless graph.
+  Partition the family into $C union.dot D$ such that $C$ is any maximal
+  subset of the family such that $pi_0 C$ is an edgeless graph.
 
-  Note two things: $pi_0 B$ is also edgeless, and $card(A) = card(B) = 2^(n-1)$. From this, it follows that $B$ also satisfies the defining condition of $A$.
+  Note two things: $pi_0 D$ is also edgeless, and $card(C) = card(D) = 2^(n-1)$. From this, it follows that $D$ also satisfies the defining condition of $C$.
 
-  Let's verify the first observation. If any element $pi_0 x$ of $pi_0 B$ were disconnected from $pi_0 A$, then $A$ could be extended to $A union {x}$, so $A$ would not be maximal. This implies that every element of $pi_0 B$ is connected to some element of $pi_0 A$, so $pi_0 B subset.eq N(pi_0 A)$. Since $pi_0 A$ is edgeless, then $N(pi_0 A)$ is edgeless,
-  thus $pi_0 B$ is edgeless.
+  Let's verify the first observation. If any element $pi_0 x$ of $pi_0 D$ were disconnected from $pi_0 C$, then $C$ could be extended to $C union {x}$, so $C$ would not be maximal. This implies that every element of $pi_0 D$ is connected to some element of $pi_0 C$, so $pi_0 D subset.eq N(pi_0 C)$. Since $pi_0 C$ is edgeless, then $N(pi_0 C)$ is edgeless,
+  thus $pi_0 D$ is edgeless.
 
-  Now the second observation. Since $A$ is maximal among those subsets $S$ for which $pi_0 S$ is edgeless, and $pi_0 B$ is edgeless, we have $card(A) >= card(B)$, from which $card(A) >= 2^(n-1)$. Now, since $forall a, a' in A, a adj a'$ while $pi_0 a adj.not pi_0 a'$, we must have $pih_0 a adj pih_0 a'$. This means that $pih_0 A$ is a clique of at least $card(A) >= 2^(n-1)$ points in $pih_0 G$ (we have that $card(pih_0 A) = card(A)$ since $a != a' => a adj a' => pih_0 a adj pih_0 a' => pih_0 a != pih_0 a'$). By the induction assumption, the largest clique size in $pih_0 G$ is at most $2^(n-1)$, so $card(A) >= 2^(n-1) >= card(pih_0 A) = card(A)$, hence $card(A) = 2^(n-1)$.
+  Now the second observation. Since $C$ is maximal among those subsets $S$ for which $pi_0 S$ is edgeless, and $pi_0 D$ is edgeless, we have $card(C) >= card(D)$, from which $card(C) >= 2^(n-1)$. Now, since $forall c, c' in C, c adj c'$ while $pi_0 c adj.not pi_0 c'$, we must have $pih_0 c adj pih_0 c'$. This means that $pih_0 C$ is a clique of at least $card(C) >= 2^(n-1)$ points in $pih_0 bcn$ (we have that $card(pih_0 C) = card(C)$ since $c != c' => c adj c' => pih_0 c adj pih_0 c' => pih_0 c != pih_0 c'$). By the induction assumption, the largest clique size in $pih_0 bcn$ is at most $2^(n-1)$, so $card(C) >= 2^(n-1) >= card(pih_0 C) = card(C)$, hence $card(C) = 2^(n-1)$.
 
-  Having shown that $B$ is also maximal w.r.t. A's defining condition, we have that $pi_0 A subset.eq N(pi_0 B)$. Since $N^2(S) subset.eq S$ for a subset $S$ of a graph of maximal degree 1, we have that $N(pi_0 A) subset.eq pi_0 B$, from which $pi_0 B = N(pi_0 A)$ and $pi_0 A = N(pi_0 B)$.
+  Having shown that $D$ is also maximal w.r.t. C's defining condition, we have that $pi_0 C subset.eq N(pi_0 D)$. Since $N^2(S) subset.eq S$ for a subset $S$ of a graph of maximal degree 1, we have that $N(pi_0 C) subset.eq pi_0 D$, from which $pi_0 D = N(pi_0 C)$ and $pi_0 C = N(pi_0 D)$.
 
-  Assume WLOG that $x_0 in A$. If $pi_0 q$ had no edge to $pi_0 B$, then
-  $pih_0 B union.dot {pih_0 q}$ would form a clique of $2^(n-1)+1$ elements
-  in $pih_0 G$, which is impossible. Thus $pi_0 q adj pi_0 b$ for some $b in B$. It follows that $pi_0 q$ has no edge to $pi_0 A$, from which $pih_0 q$ has edges to all members of $pih_0 (A - {x_0})$. This means $pih_0 (A - {x_0})$ is a clique of $2^(n-1)-1$ points in $pih_0 G$ which can be extended by $pih_0 q$ or by $pih_0 x_0$. By the induction assumption, this means $pih_0 q = pih_0 x_0$.
+  Assume WLOG that $x_0 in C$. If $pi_0 q$ had no edge to $pi_0 D$, then
+  $pih_0 D union.dot {pih_0 q}$ would form a clique of $2^(n-1)+1$ elements
+  in $pih_0 bcn$, which is impossible. Thus $pi_0 q adj pi_0 b$ for some $b in D$. It follows that $pi_0 q$ has no edge to $pi_0 C$, from which $pih_0 q$ has edges to all members of $pih_0 (C - {x_0})$. This means $pih_0 (C - {x_0})$ is a clique of $2^(n-1)-1$ points in $pih_0 bcn$ which can be extended by $pih_0 q$ or by $pih_0 x_0$. By the induction assumption, this means $pih_0 q = pih_0 x_0$.
   
   Running the same argument by some index $j > 0$, we also have that $pih_j q = pih_j x_0$. Since these two projections cover all components, we must have $q = x_0$.
 ]
 #let xfam = $(x_i)_(i in [2^n])$
 #let yfam = $(y_i)_(i in [2^n])$
 
-From here on, $ihom colon G -> G$ be an injective homomorphism and let $x_0 in E$. Let $xfam = T(x_0)$ and define $y_i = ihom(x_i)$.
+From here on, let $x_0 in E$. Let $xfam = T(x_0)$ and define $y_i = ihom(x_i)$.
 
 
 #lemma[
-  Let there be exactly one $k$ such that $pi_k x_a adj pi_k x_b$. Then there is exactly one $m$ for which $pi_(m) y_a adj pi_(m) y_b$ and $pih_(m) y_a = pih_(m) y_b$.
+  (Graph)
+  $ihom$ is an $E_square$-homomorphism.
   ] <one-component>
 
 #proof[
-  Since $ihom$ is a homomorphism and $x_a adj x_b$, we have $y_a adj y_b$, so $y_a, y_b$ are adjacent in at least one component. Note also that $yfam$ is a clique in $G$.
+  Let us have $x_a, x_b in E$ such that $x_a adj' x_b$. Then there exists some $x_0 in E$ for which $x_a, x_b in T(x_0)$ --- we may choose $x_0 := x_a$.
 
-  Suppose $y_a, y_b$ differ in at least two components, and let the first two of these have indices $i, j$.
+  Since $ihom$ is a $bcn$-homomorphism and $x_a adj x_b$, we have $y_a adj y_b$, so $y_a, y_b$ are adjacent in at least one component. Note also that $yfam$ is a clique in $bcn$.
 
-  Let $A_i union.dot B_i$ be a partition of $yfam$ such that $pi_i A_i$ is maximal and edgeless, and $y_a in A_i, y_b in B_i$. To prove that such a partition exists, it is sufficient to find any $y_c$ such that $pi_i y_c adj pi_i y_b$, start with ${y_a, y_c} subset.eq A_i$ and extend $A_i$ to maximality (noting that $pi_i y_a != pi_i y_b$ implies $pi_i y_a adj.not pi_i y_c$). Such a $y_c$ exists, since any partition of $yfam$ into two maximal $pi_i$‑edgeless sets consists of two nonempty sets, one of which contains $y_b$, and any member of the other component can be $y_c$.
-  Also construct an analogous partition $A_j union.dot B_j$ for $pi_j$.
+  We first show that $y_a, y_b$ differ in exactly one component.
+  Suppose for the sake of contradiction that $y_a, y_b$ differ in at least two components, and let the first two of these have indices $i, j$.
 
-  Let $k$ be the index for which $pi_k x_a adj pi_k x_b$. By the definition of $T$, this is the unique index at which $pi_k x_a != pi_k x_b$, so $pih_k x_a = pih_k x_b$. Fix $v in G$ such
-  that $pih_k v = pih_k x_a, pih_k x_b$, and $pi_k v != pi_k x_a, pi_k x_b$. Note that $ihom(v)$ has edges to all of $yfam$ except possibly for $y_a, y_b$.
+  Let $C_i union.dot D_i$ be a partition of $yfam$ such that $pi_i C_i$ is maximal and edgeless, and $y_a in C_i, y_b in D_i$. To prove that such a partition exists, it is sufficient to find any $y_c$ such that $pi_i y_c adj pi_i y_b$, start with ${y_a, y_c} subset.eq C_i$ and extend $C_i$ to maximality (noting that $pi_i y_a != pi_i y_b$ implies $pi_i y_a adj.not pi_i y_c$). Such a $y_c$ exists, since any partition of $yfam$ into two maximal $pi_i$‑edgeless sets consists of two nonempty sets, one of which contains $y_b$, and any member of the other component can be $y_c$.
+  Also construct an analogous partition $C_j union.dot D_j$ for $pi_j$.
 
-  Suppose that $pi_i ihom(v)$ has an edge to $pi_i A_i$. This implies $pi_i ihom(v) in N(pi_i A_i) = pi_i B_i$,
+  Let $k$ be the index for which $pi_k x_a adj pi_k x_b$. By the definition of $T$, this is the unique index at which $pi_k x_a != pi_k x_b$, so $pih_k x_a = pih_k x_b$. Fix $v in B$ such
+  that $pih_k v = pih_k x_a, pih_k x_b$, and $pi_k v != pi_k x_a, pi_k x_b$. Note that $ihom(v)$ has $bcn$-edges to all of $yfam$ except possibly for $y_a, y_b$.
+
+  Suppose that $pi_i ihom(v)$ has an edge to $pi_i C_i$. This implies $pi_i ihom(v) in N(pi_i C_i) = pi_i D_i$,
   // ref here?
-  from which $pih_i ihom(v)$ forms a clique with $pih_i (B_i - {y_b})$. By @lem:clique-ext this implies that $pih_i ihom(v) = pih_i y_b$, from which $pi_j ihom(v) = pi_j y_b$. From this, we have that $pih_j ihom(v)$ forms a clique with $pih_j (B_j - {y_b})$, which implies by @lem:clique-ext that $pih_j ihom(v) = pih_j y_b$. Since $pih_i ihom(v) = pih_i y_b$ and $pih_j ihom(v) = pih_j y_b$, we have $ihom(v) = y_b = ihom(x_b)$, from which $v = x_b$, which contradicts our choice of $v$.
+  from which $pih_i ihom(v)$ forms a $bcn$-clique with $pih_i (D_i - {y_b})$. By @lem:clique-ext this implies that $pih_i ihom(v) = pih_i y_b$, from which $pi_j ihom(v) = pi_j y_b$. From this, we have that $pih_j ihom(v)$ forms a $bcn$-clique with $pih_j (D_j - {y_b})$, which implies by @lem:clique-ext that $pih_j ihom(v) = pih_j y_b$. Since $pih_i ihom(v) = pih_i y_b$ and $pih_j ihom(v) = pih_j y_b$, we have $ihom(v) = y_b = ihom(x_b)$, from which $v = x_b$, which contradicts our choice of $v$.
 
-  Consequently, $pi_i ihom(v)$ has no edge to $pi_i A_i$, and by symmetrical argument it has no edge to $pi_i B_i$ either. From these, we have that $pih_i ihom(v)$ forms a clique with $pih_i (A_i - {y_a})$ and with $pih_i (B_i - {y_b})$, which implies by @lem:clique-ext that $pih_i y_a = pih_i ihom(v) = pih_i y_b$, so $pi_j y_a = pi_j y_b$, contradicting our choice of $j$ and thus our claim that $y_a, y_b$ differ in at least two components.
+  Consequently, $pi_i ihom(v)$ has no edge to $pi_i C_i$, and by symmetrical argument it has no edge to $pi_i D_i$ either. From these, we have that $pih_i ihom(v)$ forms a $bcn$-clique with $pih_i (C_i - {y_a})$ and with $pih_i (B_i - {y_b})$, which implies by @lem:clique-ext that $pih_i y_a = pih_i ihom(v) = pih_i y_b$, so $pi_j y_a = pi_j y_b$, contradicting our choice of $j$ and thus our claim that $y_a, y_b$ differ in at least two components.
 
-  Since $y_a$ and $y_b$ are adjacent in at least one component and differ in at most one component, these bounds must be saturated and exactly one component accounts for both, which is the $m$ at which $pi_(m) y_a adj pi_(m) y_b$ and $pih_(m) y_a = pih_(m) y_b$.
+  Since $y_a$ and $y_b$ are adjacent in at least one component and differ in at most one component, these bounds must be saturated and exactly one component accounts for both, which is some $m$ at which $pi_(m) y_a adj pi_(m) y_b$ and $pih_(m) y_a = pih_(m) y_b$ --- consequently $y_a adj' y_b$.
 ]
 
-@one-component can be interpreted as saying that $ihom$ descends to an injective homomorphism of type $T(x_0) -> yfam$, where the domain and codomain are interpreted as subgraphs of $G' = square.big_(i in [n]) G_i$, which is the Cartesian product of the component graphs $G_i$. We now desire to show that this is a componentwise isomorphism.
+#lemma[(Graph)
+  There is a permutation $sigma: [n]->[n]$ and a family of local isomorphisms $ihom_i : S_i -> S_sigma(i)$ such that for $e in E$, we have $pi_sigma(i) ihom(e) = ihom_i (pi_i e)$.
+]
 
-// If $ihom$ failed to be an isomorphism in $G'$ between $T(x_0)$ and $yfam$, then there would be some $x_i$ for which $deg(ihom(x_i)) > deg(x_i) = n$, since an injective homomorphism with finite codomain can only fail to be an isomorphism by adding edges. By the pigeonhole principle, this would imply there is some index $j in [n]$ and indices $u != v in [2^n]$ such that $pi_j ihom(x_i) adj pi_j ihom(x_u), pi_j ihom(x_v)$. From @one-component, this would imply that $pih_j ihom(x_i) = pih_j ihom(x_u) = pih_j ihom(x_v)$, and since $G_j$ has maximal vertex degree 1, we also have that $pi_j ihom(x_u) = pi_j ihom(x_v)$. Consequently, $ihom(x_u) = ihom(x_v)$, from which $x_u = x_v$, contradicting our choice of $u, v$.
+#proof[
+First, note that $yfam$ is a subgraph of $T(y_0)$, since $yfam$ is connected (on account of being a homomorphic image of $T(x_0)$), and $T(y_0)$ is the connected component of $y_0$ in $bbox$. Consequently, $ihom$ is a homomorphism from $T(x_0)$ to $T(y_0)$.
 
-We first show that $ihom$ is an isomorphism between $T(x_0)$ and $yfam$ in $G'$. Since $T(y_0)$ is closed under the operation of swapping any component for its adjacent one, and every member of $yfam$ is related to $y_0$ by a sequence of such operations (by repeated application of @one-component along a path from $x_0$ to the preimage of the desired member of $yfam$), we must have that each vertex of $yfam$ is a vertex of $T(y_0)$, and since $T(y_0)$ is a full subgraph of $G'$, we have that $yfam$ is a subgraph of $T(y_0)$. This implies that $deg_(T(y_0))(y_i) <= n$ for each $i in [2^n]$, and by the fact that an injective homomorphism cannot decrease degree, we must have that $deg_(T(y_0))(y_i) = n$, from which $yfam = T(y_0)$ in $G'$. Since every edge $x_i adj x_j$ induces an edge $y_i adj y_j$, and $deg(x_i) = deg(y_i)$, we must have that every edge in $T(y_0)$ is induced by an edge in $T(x_0)$, from which $x_i adj x_j <=> y_i adj y_j$. Since $ihom$ is a bijection with finite codomain, this is sufficient for it to be an isomorphism.
+Because $ihom$ is an injective homomorphism between the finite graphs $T(x_0)$
+and $T(y_0)$, and the two graphs have an equal number of edges, $ihom$ must be an isomorphism from $T(x_0)$ to $T(y_0)$.
 
 That this isomorphism arises from a componentwise isomorphism (up to permutation of components) follows from e.g. Theorem 6.8 in @handbook.
 
 Since these isomorphisms must glue compatibly across all of $E$, we have that there exists a permutation $sigma : [n] -> [n]$ and a family of local isomorphisms $ihom_i : S_i -> S_sigma(i)$ such that for all $x in E$, $pi_sigma(i) ihom(x) = ihom_i (pi_i x)$.
+]
 
 We would like to extend this slightly to the case of vertices outside of $E$ to finish our proof of @thm:factors.
 
-#lemma[
-  Let $q in G$ and $i in [n]$ be such that $pi_i q = pi_i x_0$. Then $pi_sigma(i) ihom(q) = pi_sigma(i) ihom(x_0) = ihom_i (pi_i x_0)$.
+#lemma[(Graph)
+  Let $q in B$ and $i in [n]$ be such that $pi_i q = pi_i x_0$. Then $pi_sigma(i) ihom(q) = pi_sigma(i) ihom(x_0) = ihom_i (pi_i x_0)$.
   ] <lem:interior>
 
 #proof[
@@ -171,7 +177,7 @@ We would like to extend this slightly to the case of vertices outside of $E$ to 
 
   Let $(x_j)_(j in J)$ be the subfamily of $xfam$ for that satisfies $forall j in J, pi_i x_j adj pi_i x_0$. We then have that $card(J) = 2^(n-1)$ and $forall j in J, pi_sigma(i)y_j adj pi_sigma(i) y_0$. Note also that since $q adj x_j$, we have $ihom(q) adj y_j$ for each $j in J$.
 
-  Suppose that $pi_(sigma(i)) ihom(q) != pi_(sigma(i)) y_0$. This implies that $pi_sigma(i)ihom(q) adj.not pi_sigma(i)y_j$ for each $j in J$, from which (by way of $ihom(q) adj y_j$) we must have $pih_sigma(i)ihom(q) adj pih_sigma(i)y_j$. This induces a clique of $2^(n-1)+1$ vertices ${pih_sigma(i)ihom(q)} union {pih_sigma(i)y_j : j in J}$ in $pih_(sigma(i))G$, which is impossible by @lem:clique-ext. We thus have that $pi_sigma(i) ihom(q) = pi_sigma(i)y_0 = ihom_i (pi_i x_0)$.
+  Suppose that $pi_(sigma(i)) ihom(q) != pi_(sigma(i)) y_0$. This implies that $pi_sigma(i)ihom(q) adj.not pi_sigma(i)y_j$ for each $j in J$, from which (by way of $ihom(q) adj y_j$) we must have $pih_sigma(i)ihom(q) adj pih_sigma(i)y_j$. This induces a clique of $2^(n-1)+1$ vertices ${pih_sigma(i)ihom(q)} union {pih_sigma(i)y_j : j in J}$ in $pih_(sigma(i))bcn$, which is impossible by @lem:clique-ext. We thus have that $pi_sigma(i) ihom(q) = pi_sigma(i)y_0 = ihom_i (pi_i x_0)$.
 ] 
 
 Since for each $x_i in S_i$ there exists an $x in E$ with $pi_i x = x_i$, @lem:interior concludes our proof of @thm:factors.
@@ -181,7 +187,7 @@ Since for each $x_i in S_i$ there exists an $x in E$ with $pi_i x = x_i$, @lem:i
 
 We begin with a straightforward corollary of @thm:factors.
 
-#theorem[
+#theorem[(Banach)
   Let $Z := plus.circle.big_(i in [n]) X_i$ and let $ihom : B_Z -> B_Z$ be a non-contractive function. Then there is some permutation $sigma : [n] -> [n]$ and a family of non-contractive functions $ihom_i : S_i -> S_(sigma(i))$ such that for all points $x in B_Z$ and all $i in [n]$ we have 
   $pi_i x in S_i => pi_(sigma(i)) G(x) = ihom_i (pi_i x)$.
 ] <thm:banach-factors>
@@ -190,7 +196,7 @@ We begin with a straightforward corollary of @thm:factors.
 
 This can be applied to prove some more natural theorems concerning plasticity.
 
-#theorem[
+#theorem[(Banach)
   Let $lip: B_Z -> B_Z$ be a 1-Lipschitz bijection. If $lip$ maps extreme points to extreme points, or $lip(S_Z) subset.eq S_Z$, then $lip$ is an isometry.
 ] <thm:natural>
 
@@ -198,8 +204,8 @@ This can be applied to prove some more natural theorems concerning plasticity.
 
 We begin with some graph-theoretic lemmas mirroring the conditions of @thm:natural.
 
-#lemma[
-  Let $ihom, G, ihom_i, S, E$ be as in @thm:factors. If $E subset.eq ihom(E)$ or $S subset.eq ihom(S)$, then each $ihom_i$ is a bijection.
+#lemma[(Graph)
+  If $S subset.eq ihom(S)$ or $E subset.eq ihom(E)$, then each $ihom_i$ is a bijection.
 ] <lem:bijective-factors>
 
 Note that the conditions $S subset.eq ihom(S)$ and $E subset.eq ihom(E)$ in @lem:bijective-factors are equivalent to $lip(S) subset.eq S$ and $lip(E) subset.eq E$ respectively in the setting of @thm:natural.
@@ -216,18 +222,17 @@ Note that the conditions $S subset.eq ihom(S)$ and $E subset.eq ihom(E)$ in @lem
   Fix a point $q in E$ such that $pi_sigma(i) q = y$. Since $q in E$, there is some $x in E$ for which $ihom(x) = q$, and by @thm:factors, we have $ihom_i (pi_i x) = pi_sigma(i) ihom(x) = y$.
 ]
 
-#lemma[
-  Under the conditions of @lem:bijective-factors, $S subset.eq ihom(S)$ implies that $E subset.eq ihom(E)$.
+#lemma[(Graph)
+  On the assumptions of @lem:bijective-factors, $S subset.eq ihom(S)$ implies that $E subset.eq ihom(E)$.
 ]
 
 #proof[
   Fix any point $y in E$. We aim to construct a point $x in E$ such that $ihom(x)=y$.
 
   By $S subset.eq ihom(S)$ and @lem:bijective-factors, we have that each $ihom_i$ is a bijection, so we may define $x$ such that $ihom_i (pi_i x) = pi_sigma(i) y$ for each $i in [n]$. By @thm:factors, we have that $pi_sigma(i) ihom(x) = ihom_i (pi_i x) = pi_sigma(i) y$, so $ihom(x) = y$ as desired.
-
+]
   // I have no idea whether the converse holds - I should try
   // pushing the formalism at some point.
-]
 
 We now proceed with more geometric results for which a graph-theoretic analogue has not been recovered. Whenever @lem:bijective-factors is applicable, we define $lip_i = ihom_i^(-1)$ in analogy with the relation $lip = ihom^(-1)$.
 
