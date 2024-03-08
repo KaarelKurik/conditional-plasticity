@@ -9,8 +9,9 @@
 // #set page(width: 16cm, height: auto, margin: 1.5cm)
 #set heading(numbering: "1.1.")
 
-#let theorem = thmbox("theorem", "Theorem", fill: rgb("#eeffee"))
-#let lemma = thmbox("lemma", "Lemma", fill: rgb("#ffeeff"))
+#let theorem = thmbox("theorem", "Theorem", fill: rgb("#ccffcc"))
+#let lemma = thmbox("lemma", "Lemma", fill: rgb("#ffddff"))
+#let problem = thmbox("problem", "Problem", fill: rgb("ffffaa"))
 #let adj = math.tilde
 #let pih = $hat(pi)$
 #let clo(L) = math.overline(L)
@@ -28,6 +29,41 @@
 
 #let ihom = $g$
 #let lip = $f$
+
+= Introduction
+
+The central aim of this article is to present a generalization of a key lemma
+found in Nikita Leo's proof of the plasticity of the closed unit ball of
+the $ell_infinity$-sum of two strictly convex Banach spaces, where the generalization
+extends the lemma to the $ell_infinity$-sum of any finite number of strictly convex Banach
+spaces by way of a graph theoretic analogue. In addition, the generalized lemma is applied to prove that any 1-Lipschitz bijection from
+the closed unit ball of such a space to itself
+which maps extreme points to extreme points
+or the sphere into itself must be an isometry.
+
+Two additional results are also presented, which may prove no less important for the study of plasticity than the main result. The first states that the existence of a non-isometric 1-Lipschitz bijection between the unit balls of two distinct Banach spaces implies the existence of a non-isometric 1-Lipschitz bijection from the unit ball of some Banach space to itself, thereby proving that the general question of unit ball plasticity for Banach space pairs is equivalent to unit ball plasticity for single Banach spaces. The second states that the homeomorphic plasticity of the unit ball for a Banach space is equivalent to the homeomorphic plasticity of all of the space's separable subspaces.
+
+= Preliminaries
+
+== Background
+
+The notion of plasticity for metric spaces was introduced by Naimpally, Piotrowski, and Wingler in their 2006 article @naimpally:2006.
+A metric space is said to be _EC-plastic_ (or just _plastic_) when
+all 1-Lipschitz bijections from the space into itself are isometries.
+
+In their 2016 article @cascales:2016, Cascales, Kadets, Orihuela, and Wingler began an investigation
+of the following question.
+
+#problem[
+  Is the closed unit ball of every Banach space plastic?
+]
+
+In said article, this question was answered affirmatively for the special case of strictly convex Banach spaces. (Recall that a Banach
+space is strictly convex if its
+unit sphere contains no segments with distinct
+endpoints.) The general case, however, remains open.
+
+
 
 = Conventions, notation
 
@@ -390,7 +426,7 @@ We now have enough to prove @thm:natural.
   By @lem:homogeneity-equiv and @lem:g-homogeneous, we have $lip = phi$,
   so $lip$ satisfies the same properties stated above for $phi$.
 
-  By #cite(<strict-convex>, supplement: [Lemma 2.5]), the facts just stated about $lip$, along with the fact that $lip$ is $1$‑Lipschitz, are sufficient for $lip$ to be an isometry of $B_Z$.
+  By #cite(<cascales:2016>, supplement: [Lemma 2.5]), the facts just stated about $lip$, along with the fact that $lip$ is $1$‑Lipschitz, are sufficient for $lip$ to be an isometry of $B_Z$.
 ]
 
 #bibliography("refs.yml")

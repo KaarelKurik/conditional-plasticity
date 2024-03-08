@@ -5,9 +5,111 @@ handbook:
   author: [Richard Hammack, Wilfried Imrich, Sandi Klavžar]
   date: 2011
 
-strict-convex:
+cascales:2016:
   type: article
   title: Plasticity of the unit ball of a strictly convex Banach space
   author: [Bernardo Cascales, Vladimir Kadets, Jose Orihuela, Eric J. Wingler]
-  date: 2016-08
+  date: 2016-09
+  page-range: 723-727
   doi: "10.1007/s13398-015-0261-3"
+  parent:
+    type: periodical
+    title: Revista de la Real Academia de Ciencias Exactas, Físicas y Naturales. Serie A. Matemáticas
+    volume: 110
+    issue: 2
+
+naimpally:2006:
+  type: article
+  title: Plasticity in metric spaces
+  author: [Somashekhar Amrith Naimpally, Zbigniew Piotrowski, Eric J. Wingler]
+  date: 2006
+  doi: "10.1016/j.jmaa.2005.04.070"
+  page-range: 38-48
+  parent:
+    type: periodical
+    title: Journal of Mathematical Analysis and Applications
+    volume: 313
+    issue: 1
+
+angosto:2019:
+  type: article
+  page-range: 38-52
+  date: 2019
+  doi: "10.1016/j.jmaa.2018.10.058"
+  author: [Carlos Angosto, Vladimir Kadets, Olesia Zavarzina]
+  title: Non-expansive bijections, uniformities and polyhedral faces
+  parent:
+    type: periodical
+    title: Journal of Mathematical Analysis and Applications
+    volume: 471
+    issue: 1
+
+kadets_zavarzina:2016:
+  type: article
+  title: Plasticity of the unit ball of $ell_1$
+  date: 2016-09
+  page-range: 4-9
+  author: [Vladimir Kadets, Olesia Zavarzina]
+  doi: "10.26565/2221-5646-2016-83-01"
+  parent:
+    type: periodical
+    title: Visnyk of V. N. Karazin Kharkiv National University. Ser. Mathematics, Applied Mathematics and Mechanics
+    volume: 83
+
+kadets_zavarzina:2018:
+  type: article
+  title: Nonexpansive bijections to the unit ball of the $ell_1$-sum of strictly convex Banach spaces
+  doi: "10.1017/S0004972717001150"
+  author: [Vladimir Kadets, Olesia Zavarzina]
+  page-range: 285-292
+  date: 2018
+  parent:
+    type: periodical
+    title: Bulletin of the Australian Mathematical Society
+    volume: 97
+    issue: 2
+
+leo:2022:
+  type: article
+  title: Plasticity of the unit ball of $c$ and $c_0$
+  author: Nikita Leo
+  doi: "10.1016/j.jmaa.2021.125718"
+  date: 2022
+  parent:
+    type: periodical
+    title: Journal of Mathematical Analysis and Applications
+    volume: 507
+    issue: 1
+
+haller:2022:
+  type: article
+  title: Two new examples of Banach spaces with a plastic unit ball
+  author: [Rainis Haller, Nikita Leo, Olesia Zavarzina]
+  date: 2022
+  page-range: 89-101
+  doi: "10.12697/ACUTM.2022.26.07"
+  parent:
+    title: Acta et Commentationes Universitatis Tartuensis de Mathematica
+    volume: 26
+    issue: 1
+
+fakhoury:2024:
+  type: article
+  title: Plasticity of the unit ball of some $C(K)$ spaces
+  author: Micheline Fakhoury
+  date: 2024
+  doi: "10.1016/j.jmaa.2023.127688"
+  parent:
+    title: Journal of Mathematical Analysis and Applications
+    volume: 530
+    issue: 2
+
+zavarzina:2017:
+  type: article
+  title: Non-expansive bijections between unit balls of Banach spaces
+  date: 2017-04
+  author: Olesia Zavarzina
+  doi: "10.1215/20088752-2017-0050"
+  parent:
+    title: Annals of Functional Analysis
+    volume: 9
