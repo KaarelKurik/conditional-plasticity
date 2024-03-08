@@ -312,9 +312,6 @@ The reader may readily verify that $phi = gamma^(-1)$.
   where equality 4 follows from $lip(y) in E$ and @thm:banach-factors.
   Consequently, we have $ihom(q) = x$ and $gamma(q) = x$, from which
   $q = f(x)$ and $q = phi(x)$, so $f(x) = phi(x)$.
-
-
-// TODO: Rewrite this one from scratch.
 ]
 
 #lemma[
