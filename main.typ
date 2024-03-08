@@ -117,6 +117,8 @@ The remaining analogies are left for the reader to verify.
 
 Throughout @sec:main, every theorem and lemma shall have an annotation indicating whether it requires the Banach space structure. If the graph theoretic structure is sufficient, there will be no annotation.
 
+#let annotation = [(Geometric)]
+
 == Graph theoretic results
 
 #let bcn = $B_*$
@@ -229,7 +231,7 @@ Since for each $x_i in S_i$ there exists an $x in E$ with $pi_i x = x_i$, @lem:i
 
 We begin with a straightforward corollary of @thm:factors.
 
-#theorem[(Banach)
+#theorem[#annotation
   Let $Z := plus.circle.big_(i in [n]) X_i$ and let $ihom : B_Z -> B_Z$ be a non-contractive function. Then there is some permutation $sigma : [n] -> [n]$ and a family of non-contractive functions $ihom_i : S_i -> S_(sigma(i))$ such that for all points $x in B_Z$ and all $i in [n]$ we have 
   $pi_i x in S_i => pi_(sigma(i)) G(x) = ihom_i (pi_i x)$.
 ] <thm:banach-factors>
@@ -238,7 +240,7 @@ We begin with a straightforward corollary of @thm:factors.
 
 This can be applied to prove some more natural theorems concerning plasticity.
 
-#theorem[(Banach)
+#theorem[#annotation
   Let $lip: B_Z -> B_Z$ be a 1-Lipschitz bijection. If $lip$ maps extreme points to extreme points, or $lip(S_Z) subset.eq S_Z$, then $lip$ is an isometry.
 ] <thm:natural>
 
@@ -290,7 +292,7 @@ The reader may readily verify that $phi = gamma^(-1)$.
 ]
 // This entire homogeneity business could use some reworking to have no reliance
 // on a division by zero.
-#lemma[(Banach)
+#lemma[#annotation
   If $lip(E) subset.eq E$, then
   the function $ihom$ is homogeneous in $k$ components if and only if
   $lip$ is also.
@@ -315,7 +317,7 @@ The reader may readily verify that $phi = gamma^(-1)$.
 ]
 
 #lemma[
-  (Banach)
+  #annotation
   If $lip(E) subset.eq E$, then $ihom$ is homogeneous in $n$ components, i.e. $g = gamma$.
 ] <lem:g-homogeneous>
 #proof[
