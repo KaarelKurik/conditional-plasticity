@@ -33,6 +33,47 @@
 
 We adopt the conventions that $0 in NN$ and $[n] = {i in NN : i < n}$.
 
+= Standalone results
+
+We begin with two theorems relating to plasticity which can be stated and proved without much preamble, and which are independent of both each other and the remainder of the article.
+
+#let induced = $f'$
+
+#theorem[Suppose there are Banach spaces $X, Y$, and a non-expansive bijection $lip : B_X -> B_Y$ such that $lip$ is not an isometry. Then there is a Banach space $Z$ and a non-expansive bijection $induced : B_Z -> B_Z$ such that $induced$ is not an isometry.]
+
+#proof[
+  Let $C_i$ be a Banach space for each $i in ZZ$, such that $C_i = X$
+  for $i < 0$ and $C_i = Y$ for $i >= 0$. Take $Z colon.eq plus.circle.big_(i=-infinity)^infinity C_i$ with the $infinity$-norm. Define $induced : B_Z -> B_Z$ by $pi_i induced(z) = pi_(i-1) z$ for $i != 0$ and $pi_0 induced(z) = lip(pi_(-1)z)$.
+
+  It is clear by inspection that the codomain of $induced$ is correct and that it is a non-expansive bijection. That it is not an isometry follows from considering the natural inclusions of two points $x, x' in C_(-1)$ into $Z$, where $norm(induced(x) - induced(x')) = norm(lip(x)-lip(x')) < norm(x-x')$.
+]
+
+#lemma[Let $X$ be a Banach space and let $A subset.eq X$ be closed under scaling by rationals. Then $clo(A sect B_X) = clo(A) sect B_X$.] <rat-scaling>
+
+#proof[Since $A sect B_X subset.eq clo(A) sect B_X$ and the latter is closed, we have $clo(A sect B_X) subset.eq clo(A) sect B_X$. It thus suffices to show the opposite inclusion.
+
+Fix any $a in clo(A) sect B_X$ and a sequence $a_i in A$ that converges to $a$. If $norm(a) < 1$, then $a_i in A sect B_X$ for all sufficiently large $i$, from which $a in clo(A sect B_X)$. If $norm(a) = 1$, then choose a sequence of rationals $q_i in QQ$ such that $abs(q_i) <= 1/norm(a_i)$ for all sufficiently large $i$, and $q_i -> 1$. This is possible since $norm(a_i) -> norm(a) = 1$. We then have $q_i a_i in A sect B_X$ for all sufficiently large $i$, and $q_i a_i -> a$, so $a in clo(A sect B_X)$. We thus have that $clo(A) sect B_X subset.eq clo(A sect B_X)$, so $clo(A) sect B_X = clo(A sect B_X)$.
+]
+
+#let restr = $rho$
+
+#theorem[Let $X$ be a Banach space and $lip: B_X -> B_X$ be a non-expansive homeomorphism that is not an isometry. Then $X$ has a separable closed subspace $Y$ such that $lip(B_Y) = B_Y$ and $restr colon.eq lip|_B_Y : B_Y -> B_Y$ is a non-expansive homeomorphism that is not an isometry.]
+
+#proof[
+  Let $x, x' in B_X$ be points for which $norm(lip(x)-lip(x')) < norm(x-x')$.
+
+  Define the set function $H colon 2^X -> 2^X$ as $ H(S) = lip(S sect B_X) union lip^(-1)(S sect B_X) union QQ dot S union (S+S). $ Note that $H(S)$ is countable whenever $S$ is countable, $S subset.eq H(S)$. Moreover, since $H$ is a union of set functions which are monotonic and continuous with respect to ascending chains of set inclusions, then $H$ is monotonic and continuous with respect to ascending chains also.
+
+  Define $S_0 = {x,x'}$ and $S_(n+1) = H(S_n)$ for $n in NN$. Let $L = union.big_(n=0)^infinity S_n.$ Since $L$ is the limit of an ascending chain, we have $H(L) = union.big_(n=0)^infinity H(S_n) = union.big_(n=0)^infinity S_(n+1) = L$, so $L$ is a fixed point of $H$. Since $L$ is a countable union of countable sets, then $L$ is itself countable.
+
+  Since $L$ is a fixed-point of $H$, we have that it is closed under addition and rational scaling, from which $clo(L)$ is closed under addition and real scaling, so $clo(L)$ is a closed subspace of $X$.
+  Since $L$ is countable, $clo(L)$ is separable. By @rat-scaling,
+  we have that $clo(L sect B_X) = clo(L) sect B_X = B_(clo(L))$.
+
+  Since $lip$ is continuous and $L$ is closed under $lip$, we have
+  that $lip(clo(L sect B_X)) subset.eq clo(lip(L sect B_X)) subset.eq clo(L sect B_X)$, so $lip(B_clo(L)) subset.eq B_clo(L)$. Analogously, we have $lip^(-1)(B_clo(L)) subset.eq B_clo(L)$. From these, we have $lip(B_clo(L)) = B_clo(L)$, so $restr$ is a well-defined non-expansive homeomorphism. Since $x, x' in B_clo(L)$, we also have that $restr$ is not an isometry.
+]
+
 = Primary results <sec:main>
 
 == Conventions, notation <sec:main_notation>
@@ -42,7 +83,7 @@ Throughout @sec:main, we consider the following structure and a certain weakenin
 - $X_i$ is a family of strictly convex nontrivial Banach spaces, indexed by $i in [n]$.
 - $B_i, S_i$ are the unit ball and sphere of $X_i$ respectively.
 - $Z = plus.circle.big_(i in [n]) X_i$ is the direct sum of the family $X_i$ endowed with the $infinity$-norm, i.e. if $z = (x_0, dots, x_(n-1)) in Z$, then $norm(z) = max_(i in [n]) norm(x_i)$.
-- $pi_i : Z -> X_i$ is the projection onto the $i$-th component of $Z$. We will sometimes write $z_i$ for $pi_i z$ when this is unambiguous.
+- $pi_i : Z -> X_i$ is the projection onto the $i$-th component of $Z$.
 - More generally, $pi_i$ should be understood as the projection onto the $i$-th component of _any_ structure with components indexed by a set containing $i$.
 - $pih_i : Z -> hat(X)_i$ is the complementary projection of the $i$-th component, where $hat(X)_i = plus.big.circle_(j in [n] \\ {i} )X_j$. For all $j in [n] \\ i$, we have that $pi_j z = pi_j pih_i z$, and $pi_i pih_i z$ is ill-defined.
 - $B_Z, S_Z$ are the unit ball and sphere of $Z$ respectively.
@@ -314,7 +355,7 @@ The reader may readily verify that $phi = gamma^(-1)$.
   This means that $pi_i x$ lies in the
 	intersection of the two balls $B(pi_i lip(y), 1-norm(pi_sigma(i) ihom(x)))$ and
 	$B(-pi_i lip(y), 1+norm(pi_sigma(i) ihom(x)))$. The intersection of these is a convex
-	set in $X_i$, and is contained in the sphere of each ball, since $norm(pi_i lip(y) - (-pi_i lip(y))) = 2 norm(pi_i lip(y)) = 2 = (1 - norm(pi_sigma(i) ihom(x))) + (1 + norm(pi_sigma(i) ihom(x)))$. Since $X_i$ is a strictly
+	set in $X_i$, and is contained in the sphere of each ball, since the distance between their centers is the sum of their radii. Since $X_i$ is a strictly
 	convex space, this intersection can contain at most one point. Since
   $norm(pi_sigma(i) ihom(x))pi_i lip(y)$ belongs to both balls, we must have that
 	$norm(pi_sigma(i) ihom(x))pi_i lip(y) = pi_i x$. Since we had $norm(pi_i lip(y))=1$
@@ -336,7 +377,7 @@ The reader may readily verify that $phi = gamma^(-1)$.
 	is immediate.
 ]
 
-We have enough to prove @thm:natural.
+We now have enough to prove @thm:natural.
 
 #proof[
   By @lem:bijective-factors, we have that the functions $lip_i$ exist,
@@ -351,45 +392,6 @@ We have enough to prove @thm:natural.
   so $lip$ satisfies the same properties stated above for $phi$.
 
   By #cite(<strict-convex>, supplement: [Lemma 2.5]), the facts just stated about $lip$, along with the fact that $lip$ is $1$‑Lipschitz, are sufficient for $lip$ to be an isometry of $B_Z$.
-]
-
-= Auxiliary results
-
-#let induced = $f'$
-
-#theorem[Suppose there are Banach spaces $X, Y$, and a non-expansive bijection $lip : B_X -> B_Y$ such that $lip$ is not an isometry. Then there is a Banach space $Z$ and a non-expansive bijection $induced : B_Z -> B_Z$ such that $induced$ is not an isometry.]
-
-#proof[
-  Let $C_i$ be a Banach space for each $i in ZZ$, such that $C_i = X$
-  for $i < 0$ and $C_i = Y$ for $i >= 0$. Take $Z colon.eq plus.circle.big_(i=-infinity)^infinity C_i$ with the $infinity$-norm. Define $induced : B_Z -> B_Z$ by $pi_i induced(z) = pi_(i-1) z$ for $i != 0$ and $pi_0 induced(z) = lip(pi_(-1)z)$.
-
-  It is clear by inspection that the codomain of $induced$ is correct and that it is a non-expansive bijection. That it is not an isometry follows from considering the natural inclusions of two points $x, x' in C_(-1)$ into $Z$, where $norm(induced(x) - induced(x')) = norm(lip(x)-lip(x')) < norm(x-x')$.
-]
-
-#lemma[Let $X$ be a Banach space and let $A subset.eq X$ be closed under scaling by rationals. Then $clo(A sect B_X) = clo(A) sect B_X$.] <rat-scaling>
-
-#proof[Since $A sect B_X subset.eq clo(A) sect B_X$ and the latter is closed, we have $clo(A sect B_X) subset.eq clo(A) sect B_X$. It thus suffices to show the opposite inclusion.
-
-Fix any $a in clo(A) sect B_X$ and a sequence $a_i in A$ that converges to $a$. If $norm(a) < 1$, then $a_i in A sect B_X$ for all sufficiently large $i$, from which $a in clo(A sect B_X)$. If $norm(a) = 1$, then choose a sequence of rationals $q_i in QQ$ such that $abs(q_i) <= 1/norm(a_i)$ for all sufficiently large $i$, and $q_i -> 1$. This is possible since $norm(a_i) -> norm(a) = 1$. We then have $q_i a_i in A sect B_X$ for all sufficiently large $i$, and $q_i a_i -> a$, so $a in clo(A sect B_X)$. We thus have that $clo(A) sect B_X subset.eq clo(A sect B_X)$, so $clo(A) sect B_X = clo(A sect B_X)$.
-]
-
-#let restr = $rho$
-
-#theorem[Let $X$ be a Banach space and $lip: B_X -> B_X$ be a non-expansive homeomorphism that is not an isometry. Then $X$ has a separable closed subspace $Y$ such that $lip(B_Y) = B_Y$ and $restr colon.eq lip|_B_Y : B_Y -> B_Y$ is a non-expansive homeomorphism that is not an isometry.]
-
-#proof[
-  Let $x, x' in B_X$ be points for which $norm(lip(x)-lip(x')) < norm(x-x')$.
-
-  Define the set function $H colon 2^X -> 2^X$ as $ H(S) = lip(S sect B_X) union lip^(-1)(S sect B_X) union QQ dot S union (S+S). $ Note that $H(S)$ is countable whenever $S$ is countable, $S subset.eq H(S)$. Moreover, since $H$ is a union of set functions which are monotonic and continuous with respect to ascending chains of set inclusions, then $H$ is monotonic and continuous with respect to ascending chains also.
-
-  Define $S_0 = {x,x'}$ and $S_(n+1) = H(S_n)$ for $n in NN$. Let $L = union.big_(n=0)^infinity S_n.$ Since $L$ is the limit of an ascending chain, we have $H(L) = union.big_(n=0)^infinity H(S_n) = union.big_(n=0)^infinity S_(n+1) = L$, so $L$ is a fixed point of $H$. Since $L$ is a countable union of countable sets, then $L$ is itself countable.
-
-  Since $L$ is a fixed-point of $H$, we have that it is closed under addition and rational scaling, from which $clo(L)$ is closed under addition and real scaling, so $clo(L)$ is a closed subspace of $X$.
-  Since $L$ is countable, $clo(L)$ is separable. By @rat-scaling,
-  we have that $clo(L sect B_X) = clo(L) sect B_X = B_(clo(L))$.
-
-  Since $lip$ is continuous and $L$ is closed under $lip$, we have
-  that $lip(clo(L sect B_X)) subset.eq clo(lip(L sect B_X)) subset.eq clo(L sect B_X)$, so $lip(B_clo(L)) subset.eq B_clo(L)$. Analogously, we have $lip^(-1)(B_clo(L)) subset.eq B_clo(L)$. From these, we have $lip(B_clo(L)) = B_clo(L)$, so $restr$ is a well-defined non-expansive homeomorphism. Since $x, x' in B_clo(L)$, we also have that $restr$ is not an isometry.
 ]
 
 #bibliography("refs.yml")
