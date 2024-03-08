@@ -1,13 +1,17 @@
 #import "@preview/ctheorems:1.1.2": *
 #show: thmrules.with(qed-symbol: $square$)
 
-#set par(justify: true)
-#set page(numbering: "1")
+#import "template.typ": *
+
+#show: project.with(
+  title: [Conditional plasticity of the unit ball
+  of the $ell_infinity$‑sum of finitely many strictly convex Banach~spaces],
+  authors: (
+    (name:"Kaarel August Kurik", email:"kaarelaugustkurik@gmail.com"),
+  ),
+)
 
 #let card(x) = $abs(#x)$
-
-// #set page(width: 16cm, height: auto, margin: 1.5cm)
-#set heading(numbering: "1.1.")
 
 #let theorem = thmbox("theorem", "Theorem", fill: rgb("#ccffcc"))
 #let lemma = thmbox("lemma", "Lemma", fill: rgb("#ffddff"))
@@ -63,11 +67,30 @@ space is strictly convex if its
 unit sphere contains no segments with distinct
 endpoints.) The general case, however, remains open.
 
+All totally bounded metric spaces are known to be plastic, including the unit balls of finite-dimensional Banach spaces @naimpally:2006.
+
+The unit ball is also known to be plastic
+in the following cases:
+- spaces whose unit sphere is a union of finite-dimensional polyhedral extreme subsets (incl. all strictly convex Banach spaces) @angosto:2019 @cascales:2016,
+- any $ell_1$-sum of strictly convex Banach spaces  (incl. $ell_1$ itself) @kadets_zavarzina:2016 @kadets_zavarzina:2018,
+- the $ell_infinity$-sum of *two* strictly convex Banach spaces @haller:2022,
+- $ell_1 plus.circle RR$ @haller:2022,
+- $C(K)$, where $K$ is a compact metrizable space with finitely many accumulation points (incl. $c tilde.equiv C(omega+1)$, i.e. the space of convergent real sequences) @fakhoury:2024 @leo:2022.
+
+In @haller:2022, Nikita Leo showed that the $ell_infinity$-sum of two strictly
+convex Banach spaces has a plastic unit ball. While the original proof does not directly apply to an arbitrary finite sum of strictly convex Banach spaces, a crucial step in the proof can be modified to suit this purpose. By generalizing this step, we can establish a similar but weaker property than plasticity, which only considers a specific class of 1‑Lipschitz bijections that is well-behaved with respect to extreme points.
 
 
 = Conventions, notation
 
 We adopt the conventions that $0 in NN$ and $[n] = {i in NN : i < n}$.
+
+For any map $f$ from a metric space $(M,d)$ to itself,
+we say that it is _non-expansive_ when it is a 1‑Lipschitz
+map, and that it is _non-contractive_ when for all
+$x, y in M$, we have $d(x,y) <= d(f(x), f(y))$ (note
+that this is dual to the inequality $d(x,y) >= d(f(x), f(y))$ defining
+1‑Lipschitz maps).
 
 = Standalone results
 
@@ -335,7 +358,7 @@ The reader may readily verify that $phi = gamma^(-1)$.
 ] <lem:homogeneity-equiv>
 
 #proof[
-  We will show that $ihom$ being homogeneous in $k$ components implies that $lip$ is also. The proof in the opposite direction is analogous.
+  We will show that $ihom$ being homogeneous in $k$ components implies that $lip$ is also. The proof of the converse is analogous.
 
   Let us have $J subset.eq [n]$ with $card(J) <= k$ and $x in B_Z$ such that $x$ has norm 1 on components $[n] \\ J$.
 
