@@ -100,6 +100,8 @@ We begin with two theorems relating to plasticity which can be stated and proved
 
 #theorem[Suppose there are Banach spaces $X, Y$, and a non-expansive bijection $lip : B_X -> B_Y$ such that $lip$ is not an isometry. Then there is a Banach space $Z$ and a non-expansive bijection $induced : B_Z -> B_Z$ such that $induced$ is not an isometry.]
 
+This result is motivated by the work of Olesia Zavarzina in @zavarzina:2017.
+
 #proof[
   Let $C_i$ be a Banach space for each $i in ZZ$, such that $C_i = X$
   for $i < 0$ and $C_i = Y$ for $i >= 0$. Take $Z colon.eq plus.circle.big_(i=-infinity)^infinity C_i$ with the $infinity$-norm. Define $induced : B_Z -> B_Z$ by $pi_i induced(z) = pi_(i-1) z$ for $i != 0$ and $pi_0 induced(z) = lip(pi_(-1)z)$.
@@ -303,7 +305,8 @@ This can be applied to prove some more natural theorems concerning plasticity.
   Let $lip: B_Z -> B_Z$ be a 1-Lipschitz bijection. If $lip$ maps extreme points to extreme points, or $lip(S_Z) subset.eq S_Z$, then $lip$ is an isometry.
 ] <thm:natural>
 
-// cite Leo here
+Our proof of @thm:natural draws upon Nikita Leo's work in @leo:2022
+for its outline.
 
 We begin with some graph-theoretic lemmas mirroring the conditions of @thm:natural.
 
