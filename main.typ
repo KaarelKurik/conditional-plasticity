@@ -37,7 +37,7 @@ We adopt the conventions that $0 in NN$ and $[n] = {i in NN : i < n}$.
 
 == Conventions, notation <sec:main_notation>
 
-Throughout @sec:main, we consider the following structure and certain weakenings thereof, explained below:
+Throughout @sec:main, we consider the following structure and a certain weakening thereof, explained below:
 - $n$ is a fixed value in $NN$ such that $n >= 1$.
 - $X_i$ is a family of strictly convex nontrivial Banach spaces, indexed by $i in [n]$.
 - $B_i, S_i$ are the unit ball and sphere of $X_i$ respectively.
@@ -120,6 +120,8 @@ to a clique of $2^n$ points.
 #let xfam = $(x_i)_(i in [2^n])$
 #let yfam = $(y_i)_(i in [2^n])$
 
+For any $x in E$, define $T(x)$ as the connected component of $x$ in $bbox$. It may be readily verified that $T(x)$ has $2^n$ members: there is a bijection between subsets $J subset.eq [n]$ and vertices $x_J in T(x)$, such that $forall j in J, pi_j x_J = pi_j x$ and $forall j in [n]\\J, pi_j x_J adj pi_j x$. $T(x)$ is thus naturally isomorphic to a pointed $n$‑hypercube graph.
+
 From here on, let $x_0 in E$. Let $xfam = T(x_0)$ and define $y_i = ihom(x_i)$.
 
 
@@ -128,7 +130,7 @@ From here on, let $x_0 in E$. Let $xfam = T(x_0)$ and define $y_i = ihom(x_i)$.
   ] <one-component>
 
 #proof[
-  Let us have $x_a, x_b in E$ such that $x_a adj' x_b$. Then there exists some $x_0 in E$ for which $x_a, x_b in T(x_0)$ --- we may choose $x_0 := x_a$.
+  Let us have $x_a, x_b in E$ such that $x_a adj' x_b$. There exists some $x_0 in E$ for which $x_a, x_b in T(x_0)$ --- we may choose $x_0 := x_a$.
 
   Since $ihom$ is a $bcn$-homomorphism and $x_a adj x_b$, we have $y_a adj y_b$, so $y_a, y_b$ are adjacent in at least one component. Note also that $yfam$ is a clique in $bcn$.
 
@@ -145,7 +147,7 @@ From here on, let $x_0 in E$. Let $xfam = T(x_0)$ and define $y_i = ihom(x_i)$.
   // ref here?
   from which $pih_i ihom(v)$ forms a $bcn$-clique with $pih_i (D_i - {y_b})$. By @lem:clique-ext this implies that $pih_i ihom(v) = pih_i y_b$, from which $pi_j ihom(v) = pi_j y_b$. From this, we have that $pih_j ihom(v)$ forms a $bcn$-clique with $pih_j (D_j - {y_b})$, which implies by @lem:clique-ext that $pih_j ihom(v) = pih_j y_b$. Since $pih_i ihom(v) = pih_i y_b$ and $pih_j ihom(v) = pih_j y_b$, we have $ihom(v) = y_b = ihom(x_b)$, from which $v = x_b$, which contradicts our choice of $v$.
 
-  Consequently, $pi_i ihom(v)$ has no edge to $pi_i C_i$, and by symmetrical argument it has no edge to $pi_i D_i$ either. From these, we have that $pih_i ihom(v)$ forms a $bcn$-clique with $pih_i (C_i - {y_a})$ and with $pih_i (B_i - {y_b})$, which implies by @lem:clique-ext that $pih_i y_a = pih_i ihom(v) = pih_i y_b$, so $pi_j y_a = pi_j y_b$, contradicting our choice of $j$ and thus our claim that $y_a, y_b$ differ in at least two components.
+  Consequently, $pi_i ihom(v)$ has no edge to $pi_i C_i$, and by symmetrical argument it has no edge to $pi_i D_i$ either. From these, we have that $pih_i ihom(v)$ forms a $bcn$-clique with $pih_i (C_i - {y_a})$ and with $pih_i (D_i - {y_b})$, which implies by @lem:clique-ext that $pih_i y_a = pih_i ihom(v) = pih_i y_b$, so $pi_j y_a = pi_j y_b$, contradicting our choice of $j$ and thus our claim that $y_a, y_b$ differ in at least two components.
 
   Since $y_a$ and $y_b$ are adjacent in at least one component and differ in at most one component, these bounds must be saturated and exactly one component accounts for both, which is some $m$ at which $pi_(m) y_a adj pi_(m) y_b$ and $pih_(m) y_a = pih_(m) y_b$ --- consequently $y_a adj' y_b$.
 ]
@@ -222,8 +224,8 @@ Note that the conditions $S subset.eq ihom(S)$ and $E subset.eq ihom(E)$ in @lem
 ]
 
 #lemma[
-  On the assumptions of @lem:bijective-factors, $S subset.eq ihom(S)$ implies that $E subset.eq ihom(E)$.
-]
+  If $S subset.eq ihom(S)$, then $E subset.eq ihom(E)$.
+] <lem:sphere-implies-extreme>
 
 #proof[
   Fix any point $y in E$. We aim to construct a point $x in E$ such that $ihom(x)=y$.
@@ -235,38 +237,120 @@ Note that the conditions $S subset.eq ihom(S)$ and $E subset.eq ihom(E)$ in @lem
 
 We now proceed with more geometric results for which a graph-theoretic analogue has not been recovered. Whenever @lem:bijective-factors is applicable, we define $lip_i = ihom_i^(-1)$ in analogy with the relation $lip = ihom^(-1)$.
 
+For convenience in what follows, we define the functions $gamma_i : B_i -> B_sigma(i)$ such that $gamma_i (x) =
+cases(norm(x) ihom_i (x/norm(x)) &"if" x != 0, 0 &"otherwise")$, and $phi_i : B_sigma(i) -> B_i$ as $phi_i = gamma_i^(-1)$. We additionally define
+$gamma, phi : B_Z -> B_Z$ as $pi_sigma(i) gamma(x) = gamma_i (pi_i x)$, and
+$pi_i phi(x) = phi_i (pi_sigma(i) x)$.
+
+The reader may readily verify that $phi = gamma^(-1)$.
+
 #definition[
-  Given a $1$-Lipschitz bijection $lip : B_Z -> B_Z$ and $ihom = lip^(-1)$ satisfying the conditions of @lem:bijective-factors, $ihom$ is said to be _homogeneous in $k$ components_ if, for all $J subset.eq [n]$ with $card(J) <= k$ and for all $x in B_Z$ such that $x$ has norm $1$ on components $[n] - J$, we have $forall i in [n], pi_sigma(i) ihom(x) = norm(pi_i x)ihom_i ((pi_i x)/norm(pi_i x))$, where the expression on the right-hand side is understood to be 0 whenever $norm(pi_i x) = 0$. Analogously, we say that $lip$ is homogeneous in $k$ components when, for the same $J$ and $x$, we have $forall i in [n], pi_(sigma^(-1)(i)) lip(x) = norm(pi_i x) lip_i ((pi_i x)/norm(pi_i x))$.
+  Given a $1$-Lipschitz bijection $lip : B_Z -> B_Z$ and $ihom = lip^(-1)$ satisfying the conditions of @lem:bijective-factors, $ihom$ is said to be _homogeneous in $k$ components_ if for all $x in B_Z$ such that $x$ has norm $1$ on at least $n-k$ components, we have $ihom(x) = gamma(x)$. Analogously, we say that $lip$ is homogeneous in $k$ components when, for the same $x$, we have $lip(x) = phi(x)$.
 ]
 // This entire homogeneity business could use some reworking to have no reliance
 // on a division by zero.
 #lemma[(Banach)
-  The function $ihom$ is homogeneous in $k$ components if and only if
+  If $lip(E) subset.eq E$, then
+  the function $ihom$ is homogeneous in $k$ components if and only if
   $lip$ is also.
-]
+] <lem:homogeneity-equiv>
 
 #proof[
   We will show that $ihom$ being homogeneous in $k$ components implies that $lip$ is also. The proof in the opposite direction is analogous.
 
-  Let us have $J subset.eq [n]$ with $card(J) <= k$ and $x in B_Z$ such that $x$ has norm 1 on components $[n] - J$.
+  Let us have $J subset.eq [n]$ with $card(J) <= k$ and $x in B_Z$ such that $x$ has norm 1 on components $[n] \\ J$.
 
-  Fix any extreme point $y$ such that $pi_i x = alpha_i pi_i y$ for all $i in [n]$, where $alpha_i$ are non-negative scalars. (If $norm(pi_i x) > 0$ then $alpha_i = norm(pi_i x)$, otherwise $alpha_i = 0$ and $pi_i y$ can be arbitrary in $S_i$.)
+  First, define $a_i = norm(pi_i x)$ and fix $y in E$ such that
+  $pi_i x = a_i pi_i y$. Then fix $q in B_Z$ such that $pi_i q = a_sigma(i) pi_i lip(y)$, and note that $q$ has norm 1 in exactly as many components as $x$, since $f(y) in E$. Consequently, the homogeneity of $ihom$ in $k$ components applies to $q$, from which
 
-  Define $q$ by $pi_i q = alpha_sigma(i) pi_i lip(y)$. Note that since $lip(y)$ is extreme, $q$ has just as many components of norm 1 as $x$ does. First, let us confirm that $ihom(q) = x$.
+  $ pi_sigma(i) ihom(q) = gamma_i (pi_i q) = 0 = pi_sigma(i) x "      if"
+  pi_i q = 0 $
+  and
+  $ pi_sigma(i) g(q) = gamma_i (pi_i q) = norm(pi_i q) ihom_i ((pi_i q)/norm(pi_i q)) = a_sigma(i) ihom_i (pi_i lip(y)) =_4 a_sigma(i) pi_sigma(i) y = pi_sigma(i) x "    otherwise," $
 
-  By homogeneity, we have
-  $ pi_sigma(i) ihom(q) = norm(pi_i q)ihom_i (pi_i lip(y)) = alpha_sigma(i) ihom_i (pi_i lip(y)). $
+  where equality 4 follows from $lip(y) in E$ and @thm:banach-factors.
+  Consequently, we have $ihom(q) = x$ and $gamma(q) = x$, from which
+  $q = f(x)$ and $q = phi(x)$, so $f(x) = phi(x)$.
 
-  Since $lip(y)$ is an extreme point, we also have that $pi_sigma(i) y = ihom_i (pi_i lip(y))$, hence
 
-  $ pi_sigma(i) ihom(q) = alpha_sigma(i) pi_sigma(i) y = pi_sigma(i) x. $
+// TODO: Rewrite this one from scratch.
+]
 
-  Since $ihom(q)$ and $x$ coincide on all components, we have $ihom(q) = x$, hence $q = lip(x)$.
+#lemma[
+  (Banach)
+  If $lip(E) subset.eq E$, then $ihom$ is homogeneous in $n$ components, i.e. $g = gamma$.
+] <lem:g-homogeneous>
+#proof[
+  We proceed by induction. The base case of $n=0$ is covered by @thm:banach-factors.
 
-  To prove that $lip$ is homogeneous in $k$ components, we need to show that
-  $pi_(sigma^(-1)(i)) lip(x) = norm(pi_i x) lip_i ((pi_i x)/(norm(pi_i x)))$. Equivalently,
-  we need to show that $pi_(sigma^(-1)) q = alpha_i lip_i (pi_i y)$. Since $pi_i y = ihom_(sigma^(-1)(i)) (pi_(sigma^(-1)(i)) lip(y))$ and $lip_i$ is the inverse of $ihom_(sigma^(-1)(i))$, we have $lip_i (pi_i y) = pi_(sigma^(-1)(i)) lip(y)$.
-  Thus, it suffices to show that $pi_(sigma^(-1)(i)) q = alpha_i pi_(sigma^(-1)(i)) lip(y)$, which is equivalent to $pi_i q = alpha_(sigma(i)) pi_i lip(y)$, the way we defined $q$ earlier. Consequently we have that $lip$ is homogeneous in $k$ components.
+  Suppose $ihom$ is homogeneous in $k < n$ components. Let $J subset.eq [n]$ with
+  $card(J) = k+1$, and let $x in B_Z$ have norm 1 on components $[n] \\ J$. We
+  already know that for $i in [n]\\J$, $pi_sigma(i) ihom(x) = ihom_i (pi_i x)
+  = pi_sigma(i) gamma (x)$ by
+  the construction of $ihom_i$.
+
+  It thus suffices to show that for $i in J$, we have $pi_sigma(i) ihom(x) =
+  pi_sigma(i) gamma(x)$.
+
+	Fix any $i in J$. Define $y$ such that $pih_sigma(i) y = pih_sigma(i) ihom(x)$ and $norm(pi_sigma(i) ihom(x)) pi_sigma(i) y = pi_sigma(i) ihom(x)$. Note that
+	$y$ has norm 1 on $k$ components, so we can apply the induction assumption to it.
+	We also define $z$ as equal to $y$, except at $sigma(i)$, where we flip the
+	sign of the component.
+
+
+
+	Since $ihom_j (-x) = -ihom_j (x)$ holds for all $j in [n], x in S_j$, we also have that
+	$lip_j (-x) = -lip_j (x)$ holds for
+	$j in [n], x in S_sigma(j)$. Since $pi_sigma(i) z = -pi_sigma(i) y$, we have that
+  $lip_i (pi_sigma(i) z) = -lip_i (pi_sigma(i) y)$, from which
+  $pi_i lip(z) = -pi_i lip(y) in S_i$ by the homogeneity of $lip$ in $k$ components.
+
+  We have that
+  $ norm(pi_i lip(y) - pi_i x) <= norm(lip(y) - x) <= norm(y - ihom(x)) = 1 - norm(pi_sigma(i) ihom(x)). $
+	Similarly, we have that
+  $ norm(-pi_i lip(y) - pi_i x) = norm(pi_i lip(z) - pi_i x) <= norm(lip(z) - x) <= norm(z - ihom(x)) = 1 + norm(pi_sigma(i) ihom(x)). $
+
+
+  This means that $pi_i x$ lies in the
+	intersection of the two balls $B(pi_i lip(y), 1-norm(pi_sigma(i) ihom(x)))$ and
+	$B(-pi_i lip(y), 1+norm(pi_sigma(i) ihom(x)))$. The intersection of these is a convex
+	set in $X_i$, and is contained in the sphere of each ball, since $norm(pi_i lip(y) - (-pi_i lip(y))) = 2 norm(pi_i lip(y)) = 2 = (1 - norm(pi_sigma(i) ihom(x))) + (1 + norm(pi_sigma(i) ihom(x)))$. Since $X_i$ is a strictly
+	convex space, this intersection can contain at most one point. Since
+  $norm(pi_sigma(i) ihom(x))pi_i lip(y)$ belongs to both balls, we must have that
+	$norm(pi_sigma(i) ihom(x))pi_i lip(y) = pi_i x$. Since we had $norm(pi_i lip(y))=1$
+	by the homogeneity of $lip$, this gives us
+  $norm(pi_i x) = norm(pi_sigma(i) ihom(x))$.
+
+	If $pi_i x = 0$, we are done, since this gives us
+	$pi_sigma(i) ihom(x) = 0$. We shall proceed with the assumption that
+  $pi_i x != 0$.
+
+	In this case, we have that
+  $norm(pi_i x)lip_i (pi_sigma(i) y) = pi_i x$.
+	Dividing both sides by $norm(pi_i x)$ and applying $g_i$, we get
+	$pi_sigma(i) y = ihom_i ((pi_i x)/norm(pi_i x))$.
+	By the definition of $y$, this gives us
+  $ (pi_sigma(i) ihom(x))/norm(pi_sigma(i) ihom(x)) = (pi_sigma(i) ihom(x))/norm(pi_i x) = ihom_i ((pi_i x)/norm(pi_i x)), $
+	from which
+	$pi_sigma(i) ihom(x) = norm(pi_i x)ihom_i ((pi_i x)/norm(pi_i x)) = pi_sigma(i) gamma(x)$
+	is immediate.
+]
+
+We have enough to prove @thm:natural.
+
+#proof[
+  By @lem:bijective-factors, we have that the functions $lip_i$ exist,
+  so $phi$ is well-defined.
+  It's clear by the construction of $phi$ that $phi$ is a bijection, and $phi(alpha x) = alpha phi(x)$
+  for all $x in S_Z, alpha in [-1,1]$. Moreover, because $gamma(S_Z) subset.eq S_Z$ and $gamma(B_Z\\S_Z) subset.eq B_Z \\ S_Z$, we have $gamma(S_Z) = S_Z$, so $phi(S_Z) = S_Z$.
+
+  
+
+  By @lem:sphere-implies-extreme, we have $lip(E) subset.eq E$.
+  By @lem:homogeneity-equiv and @lem:g-homogeneous, we have $lip = phi$,
+  so $lip$ satisfies the same properties stated above for $phi$.
+
+  By #cite(<strict-convex>, supplement: [Lemma 2.5]), the facts just stated about $lip$, along with the fact that $lip$ is $1$‑Lipschitz, are sufficient for $lip$ to be an isometry of $B_Z$.
 ]
 
 = Auxiliary results

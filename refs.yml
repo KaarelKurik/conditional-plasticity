@@ -4,3 +4,10 @@ handbook:
   edition: 2
   author: [Richard Hammack, Wilfried Imrich, Sandi Klavžar]
   date: 2011
+
+strict-convex:
+  type: article
+  title: Plasticity of the unit ball of a strictly convex Banach space
+  author: [Bernardo Cascales, Vladimir Kadets, Jose Orihuela, Eric J. Wingler]
+  date: 2016-08
+  doi: "10.1007/s13398-015-0261-3"
