@@ -7,7 +7,8 @@
   title: [Conditional plasticity of the unit ball
   of the $ell_infinity$‑sum of finitely many strictly convex Banach~spaces],
   authors: (
-    (name:"Kaarel August Kurik", email:"kaarelaugustkurik@gmail.com"),
+    (name:"Kaarel August Kurik", email:"kaarelaugustkurik@gmail.com",
+    affiliation: "Institute of Mathematics and Statistics, University of Tartu, Narva mnt 18, 51009 Tartu, Estonia"),
   ),
 )
 
@@ -34,20 +35,24 @@
 #let ihom = $g$
 #let lip = $f$
 
+#pad(x:10%)[
+  #smallcaps[Abstract.] We prove that for any $ell_infinity$-sum $Z = plus.circle.big_(i in [n]) X_i$ of finitely many strictly convex #box[Banach] spaces $(X_i)_(i in [n])$, an extremeness preserving 1-Lipschitz bijection $F: B_Z -> B_Z$ is an isometry, by constraining the componentwise behavior of the inverse $G=F^(-1)$ with a theorem admitting a graph-theoretic interpretation. We also show that if $X, Y$ are Banach spaces, then a bijective 1-Lipschitz non-isometry of type $B_X -> B_Y$ can be used to construct a bijective 1-Lipschitz non-isometry of type $B_X' -> B_X'$ for some Banach space $X'$, and that a homeomorphic 1-Lipschitz non-isometry of type $B_X -> B_X$ restricts to a homeomorphic #box[1-Lipschitz] non-isometry of type $B_S -> B_S$ for some separable subspace $S <= X$.
+]
+
 = Introduction
 
 The central aim of this article is to present a generalization of a key lemma
 found in Nikita Leo's proof of the plasticity of the closed unit ball of
 the $ell_infinity$-sum of two strictly convex Banach spaces, where the generalization
 extends the lemma to the $ell_infinity$-sum of any finite number of strictly convex Banach
-spaces by way of a graph theoretic analogue. In addition, the generalized lemma is applied to prove that any 1-Lipschitz bijection from
+spaces by way of a graph-theoretic analogue. In addition, the generalized lemma is applied to prove that any 1-Lipschitz bijection from
 the closed unit ball of such a space to itself
 which maps extreme points to extreme points
 or the sphere into itself must be an isometry.
 
 Two additional results are also presented, which may prove no less important for the study of plasticity than the main result. The first states that the existence of a non-isometric 1-Lipschitz bijection between the unit balls of two distinct Banach spaces implies the existence of a non-isometric 1-Lipschitz bijection from the unit ball of some Banach space to itself, thereby proving that the general question of unit ball plasticity for Banach space pairs is equivalent to unit ball plasticity for single Banach spaces. The second states that the homeomorphic plasticity of the unit ball for a Banach space is equivalent to the homeomorphic plasticity of all of the space's separable subspaces.
 
-= Preliminaries
+= Preliminaries and notation
 
 == Background
 
@@ -81,7 +86,7 @@ In @haller:2022, Nikita Leo showed that the $ell_infinity$-sum of two strictly
 convex Banach spaces has a plastic unit ball. While the original proof does not directly apply to an arbitrary finite sum of strictly convex Banach spaces, a crucial step in the proof can be modified to suit this purpose. By generalizing this step, we can establish a similar but weaker property than plasticity, which only considers a specific class of 1‑Lipschitz bijections that is well-behaved with respect to extreme points.
 
 
-= Conventions, notation
+== Conventions, notation
 
 We adopt the conventions that $0 in NN$ and $[n] = {i in NN : i < n}$.
 
@@ -176,11 +181,11 @@ The analogies in notation between the Banach space structure and the graph struc
 
 The remaining analogies are left for the reader to verify.
 
-Throughout @sec:main, every theorem and lemma shall have an annotation indicating whether it requires the Banach space structure. If the graph theoretic structure is sufficient, there will be no annotation.
+Throughout @sec:main, every theorem and lemma shall have an annotation indicating whether it requires the Banach space structure. If the graph-theoretic structure is sufficient, there will be no annotation.
 
 #let annotation = [(Geometric)]
 
-== Graph theoretic results
+== Graph-theoretic results
 
 #let bcn = $B_*$
 #let bbox = $B_square$
@@ -454,5 +459,9 @@ We now have enough to prove @thm:natural.
 
   By #cite(<cascales:2016>, supplement: [Lemma 2.5]), the facts just stated about $lip$, along with the fact that $lip$ is $1$‑Lipschitz, are sufficient for $lip$ to be an isometry of $B_Z$.
 ]
+
+#heading(numbering: none, "Acknowledgements")
+
+This work was supported by the Estonian Research Council grants PRG1901. The author thanks #box[Rainis Haller] and #box[Nikita Leo] for their comments and support.
 
 #bibliography("refs.yml")

@@ -31,4 +31,16 @@
   set par(justify: true)
 
   body
+
+  pad(
+    top: 0.5em,
+    x: 2em,
+    grid(
+      columns: (1fr,),
+      ..authors.map(author => [
+        #smallcaps(author.affiliation) \
+        _Email address_: #raw(author.email)
+      ])
+    )
+  )
 }
