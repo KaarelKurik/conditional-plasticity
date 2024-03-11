@@ -6,14 +6,19 @@
     align(center, counter(page).display())
     let i = counter(page).at(loc).first();
     if (i == 1) {
+      v(0.25em, weak:true)
       line()
-      [2020 _Mathematics Subject Classification_. #subject-class.join(", ").\ ]
+      v(0.5em, weak:true)
+      [2020 _Mathematics Subject Classification_. #subject-class.join(", ")
+      #v(0.5em, weak:true)
+      _Key words and phrases._ non-expansive map; unit ball; plastic metric space]
     }
   })
 
-  set page(numbering: "1", number-align: center, footer: footer)
+  set page(numbering: "1", number-align: center, footer: footer,
+  footer-descent: 30%,
+  )
   set text(font: "Linux Libertine", lang: "en")
-  
   set heading(numbering: "1.1.")
 
 
