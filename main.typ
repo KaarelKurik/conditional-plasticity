@@ -10,6 +10,7 @@
     (name:"Kaarel August Kurik", email:"kaarelaugustkurik@gmail.com",
     affiliation: "Institute of Mathematics and Statistics, University of Tartu, Narva mnt 18, 51009 Tartu, Estonia"),
   ),
+  subject-class: ("46B20", "47H09", "05C69"), // ??
 )
 
 #let card(x) = $abs(#x)$

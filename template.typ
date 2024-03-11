@@ -1,7 +1,17 @@
-#let project(title: "", authors: (), body) = {
+#let project(title: "", authors: (), subject-class: (), body) = {
   // Set the document's basic properties.
   set document(author: authors.map(a => a.name), title: title)
-  set page(numbering: "1", number-align: center)
+
+  let footer = locate(loc => {
+    align(center, counter(page).display())
+    let i = counter(page).at(loc).first();
+    if (i == 1) {
+      line()
+      [2020 _Mathematics Subject Classification_. #subject-class.join(", ").\ ]
+    }
+  })
+
+  set page(numbering: "1", number-align: center, footer: footer)
   set text(font: "Linux Libertine", lang: "en")
   
   set heading(numbering: "1.1.")
