@@ -84,8 +84,8 @@ in the following cases:
 - $ell_1 plus.circle RR$ @haller:2022,
 - $C(K)$, where $K$ is a compact metrizable space with finitely many accumulation points (incl. $c tilde.equiv C(omega+1)$, i.e. the space of convergent real sequences) @fakhoury:2024 @leo:2022.
 
-In @haller:2022, Nikita Leo showed that the $ell_infinity$-sum of two strictly
-convex Banach spaces has a plastic unit ball. While the original proof does not directly apply to an arbitrary finite sum of strictly convex Banach spaces, a crucial step in the proof can be modified to suit this purpose. By generalizing this step, we can establish a similar but weaker property than plasticity, which only considers a specific class of 1‑Lipschitz bijections that is well-behaved with respect to extreme points.
+In @haller:2022, it was shown (with proof essentially due to Nikita Leo) that the $ell_infinity$-sum of two strictly
+convex Banach spaces has a plastic unit ball. While the proof does not directly apply to an arbitrary finite sum of strictly convex Banach spaces, a crucial step in the proof can be modified to suit this purpose. By generalizing this step, we can establish a similar but weaker property than plasticity, which only considers a specific class of 1‑Lipschitz bijections that is well-behaved with respect to extreme points.
 
 
 == Conventions, notation
@@ -312,7 +312,7 @@ This can be applied to prove some more natural theorems concerning plasticity.
   Let $lip: B_Z -> B_Z$ be a 1-Lipschitz bijection. If $lip$ maps extreme points to extreme points, or $lip(S_Z) subset.eq S_Z$, then $lip$ is an isometry.
 ] <thm:natural>
 
-Our proof of @thm:natural draws upon Nikita Leo's work in @leo:2022
+Our proof of @thm:natural draws upon Nikita Leo's work in @haller:2022
 for its outline.
 
 We begin with some graph-theoretic lemmas mirroring the conditions of @thm:natural.
