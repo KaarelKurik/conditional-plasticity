@@ -11,6 +11,7 @@
     affiliation: "Institute of Mathematics and Statistics, University of Tartu, Narva mnt 18, 51009 Tartu, Estonia"),
   ),
   subject-class: ("46B20", "47H09", "05C69"), // ??
+  key-words: ("non-expansive map", "unit ball", "plastic metric space"),
 )
 
 #let card(x) = $abs(#x)$

@@ -1,4 +1,6 @@
-#let project(title: "", authors: (), subject-class: (), body) = {
+#let project(title: "", authors: (), subject-class: (), 
+key-words: (),
+body) = {
   // Set the document's basic properties.
   set document(author: authors.map(a => a.name), title: title)
 
@@ -9,9 +11,13 @@
       v(0.25em, weak:true)
       line()
       v(0.5em, weak:true)
-      [2020 _Mathematics Subject Classification_. #subject-class.join(", ")
-      #v(0.5em, weak:true)
-      _Key words and phrases._ non-expansive map; unit ball; plastic metric space]
+      if (subject-class.len() > 0) {
+      [2020 _Mathematics Subject Classification_. #subject-class.join(", ")]
+      }
+      v(0.5em, weak:true)
+      if (key-words.len() > 0) {
+      [_Key words and phrases._ #key-words.join("; ")]
+      }
     }
   })
 
