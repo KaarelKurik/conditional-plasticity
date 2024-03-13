@@ -147,7 +147,7 @@ have that $\clo{A} \cap B_X \subseteq \clo{A \cap B_X}$, so $\clo{A} \cap B_X =
 \begin{proof}
     Let $x, x' \in B_X$ be points for which $\norm{\lip(x)-\lip(x')} < \norm{x-x'}$.
 
-    Define the set function $H : 2^X \to 2^X$ as $ H(S) = \lip(S \cap B_X) \cup \lip^{-1}(S \cap B_X) \cup \QQ \cdot S \cup (S+S). $ Note that $H(S)$ is countable whenever $S$ is countable, $S \subseteq H(S)$. Moreover, since $H$ is a union of set functions which are monotonic and continuous with respect to ascending chains of set inclusions, then $H$ is monotonic and continuous with respect to ascending chains also.
+    Define the set function $H : 2^X \to 2^X$ as \[ H(S) = \lip(S \cap B_X) \cup \lip^{-1}(S \cap B_X) \cup \QQ \cdot S \cup (S+S). \] Note that $H(S)$ is countable whenever $S$ is countable, $S \subseteq H(S)$. Moreover, since $H$ is a union of set functions which are monotonic and continuous with respect to ascending chains of set inclusions, then $H$ is monotonic and continuous with respect to ascending chains also.
   
     Define $S_0 = \{x,x'\}$ and $S_{n+1} = H(S_n)$ for $n \in NN$. Let $L = \bigcup_{n=0}^\infty S_n.$ Since $L$ is the limit of an ascending chain, we have $H(L) = \bigcup_{n=0}^\infty H(S_n) = \bigcup_{n=0}^\infty S_{n+1} = L$, so $L$ is a fixed point of $H$. Since $L$ is a countable union of countable sets, then $L$ is itself countable.
   
