@@ -1,0 +1,163 @@
+\documentclass{amsart}
+\title{Conditional plasticity of the unit ball of the \(\ell_\infty\)‑sum of finitely many strictly convex Banach~spaces}
+
+% \title{lmao}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,filecolor=black]{hyperref}
+\usepackage[citestyle=numeric, backend=biber, maxbibnames=99, bibstyle=numeric]{biblatex}
+\usepackage{amssymb, mathtools}
+\usepackage{physics}
+\addbibresource{combined.bib}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{prob}{Problem}
+\newtheorem*{prob*}{Problem}
+\newtheorem{lemma}{Lemma}
+\NewDocumentCommand{\ihom}{}{g}
+\NewDocumentCommand{\lip}{}{f}
+\NewDocumentCommand{\RR}{}{\mathbb{R}}
+\NewDocumentCommand{\NN}{}{\mathbb{N}}
+\NewDocumentCommand{\ZZ}{}{\mathbb{Z}}
+\NewDocumentCommand{\QQ}{}{\mathbb{Q}}
+
+\newcommand{\clo}[1]{\overline{#1}}
+
+\begin{document}
+
+\begin{abstract}
+    We prove that for any $\ell_\infty$-sum $Z = \bigoplus_{i \in [n]} X_i$ of finitely many strictly
+    convex Banach spaces $(X_i)_{i \in [n]}$, an extremeness preserving 1-Lipschitz bijection
+    $\lip: B_Z \to B_Z$ is an isometry, by constraining the componentwise behavior of the inverse
+    $\ihom=\lip^(-1)$ with a theorem admitting a graph-theoretic interpretation.
+    We also show that if $X, Y$ are Banach spaces, then a bijective 1-Lipschitz non-isometry of
+    type $B_X \to B_Y$ can be used to construct a bijective 1-Lipschitz non-isometry of type
+    $B_X' \to B_X'$ for some Banach space $X'$, and that a homeomorphic 1-Lipschitz non-isometry of
+    type $B_X \to B_X$ restricts to a homeomorphic 1-Lipschitz non-isometry of type
+    $B_S \to B_S$ for some separable subspace $S \leq X$.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+The central aim of this article is to present a generalization of a key lemma
+found in Nikita Leo's proof of the plasticity of the closed unit ball of
+the $\ell_\infty$-sum of two strictly convex Banach spaces, where the generalization
+extends the lemma to the $\ell_\infty$-sum of any finite number of strictly convex Banach
+spaces by way of a graph-theoretic analogue. In addition, the generalized lemma is applied to prove that any 1-Lipschitz bijection from
+the closed unit ball of such a space to itself
+which maps extreme points to extreme points
+or the sphere into itself must be an isometry.
+
+Two additional results are also presented, which may prove no less important for the study of plasticity than the main result. The first states that the existence of a non-isometric 1-Lipschitz bijection between the unit balls of two distinct Banach spaces implies the existence of a non-isometric 1-Lipschitz bijection from the unit ball of some Banach space to itself, thereby proving that the general question of unit ball plasticity for Banach space pairs is equivalent to unit ball plasticity for single Banach spaces. The second states that the homeomorphic plasticity of the unit ball for a Banach space is equivalent to the homeomorphic plasticity of all of the space's separable subspaces.
+
+\section{Preliminaries and notation}
+
+\subsection{Background}
+
+The notion of plasticity for metric spaces was introduced by Naimpally, Piotrowski, and Wingler in their 2006 article \cite{naimpally:2006}.
+A metric space is said to be \textit{EC-plastic} (or just \textit{plastic}) when
+all 1-Lipschitz bijections from the space into itself are isometries.
+
+In their 2016 article \cite{cascales:2016}, Cascales, Kadets, Orihuela, and Wingler began an investigation
+of the following question.
+
+\begin{prob*}
+    Is the closed unit ball of every Banach space plastic?
+\end{prob*}
+
+In said article, this question was answered affirmatively for the special case of strictly convex Banach spaces. (Recall that a Banach
+space is strictly convex if its
+unit sphere contains no segments with distinct
+endpoints.) The general case, however, remains open.
+
+All totally bounded metric spaces are known to be plastic, including the unit balls of finite-dimensional Banach spaces \cite{naimpally:2006}.
+
+The unit ball is also known to be plastic
+in the following cases:
+\begin{itemize}
+    \item spaces whose unit sphere is a union of finite-dimensional polyhedral extreme subsets (incl. all strictly convex Banach spaces) \cite{angosto:2019,cascales:2016},
+    \item any $\ell_1$-sum of strictly convex Banach spaces 
+    (incl. $\ell_1$ itself) \cite{kadets_zavarzina:2016,kadets_zavarzina:2018},
+    \item the $\ell_\infty$-sum of *two* strictly convex Banach spaces \cite{haller:2022},
+    \item $\ell_1 \oplus \RR$ \cite{haller:2022},
+    \item $C(K)$, where $K$ is a compact metrizable space with finitely many
+    accumulation points (incl. $c \cong C(\omega+1)$, i.e. the space of convergent real sequences)
+    \cite{fakhoury:2024,leo:2022}.
+\end{itemize}
+
+In \cite{haller:2022}, it was shown (with proof essentially due to Nikita Leo)
+that the $\ell_\infty$-sum of two strictly
+convex Banach spaces has a plastic unit ball. While the proof does not directly apply to an arbitrary finite sum of strictly convex Banach spaces, a crucial step in the proof can be modified to suit this purpose. By generalizing this step, we can establish a similar but weaker property than plasticity, which only considers a specific class of
+1-Lipschitz bijections that is well-behaved with respect to extreme points.
+
+\subsection{Conventions, notation}
+
+We adopt the conventions that $0 \in \NN$ and $[n] = {i \in \NN : i < n}$.
+
+For any map $f$ from a metric space $(M,d)$ to itself,
+we say that it is \textit{non-expansive} when it is a 1‑Lipschitz
+map, and that it is \textit{non-contractive} when for all
+$x, y in M$, we have $d(x,y) \leq d(f(x), f(y))$ (note
+that this is dual to the inequality $d(x,y) \geq d(f(x), f(y))$ defining
+1‑Lipschitz maps).
+
+\section{Standalone results}
+
+We begin with two theorems relating to plasticity which can be stated and proved without much preamble, and which are independent of both each other and the remainder of the article.
+
+\NewDocumentCommand{\induced}{}{\lip'}
+
+\begin{theorem}
+    Suppose there are Banach spaces $X, Y$, and a non-expansive bijection $\lip : B_X \to B_Y$ such that $\lip$ is not an isometry. Then there is a Banach space $Z$ and a non-expansive bijection $\induced : B_Z \to B_Z$ such that $\induced$ is not an isometry.
+\end{theorem}
+
+This result is motivated by the work of Olesia Zavarzina in \cite{zavarzina:2017}.
+
+\begin{proof}
+    Let $C_i$ be a Banach space for each $i \in \ZZ$, such that $C_i = X$
+    for $i < 0$ and $C_i = Y$ for $i \geq 0$. Take $Z \coloneqq \bigoplus_{i=-\infty}^\infty C_i$ with the $\infty$-norm. Define $\induced : B_Z \to B_Z$ by $\pi_i \induced(z) = \pi_{i-1} z$ for $i \neq 0$ and $\pi_0 \induced(z) = \lip(\pi_{-1}z)$.
+  
+    It is clear by inspection that the codomain of $\induced$ is correct and that it is a non-expansive bijection. That it is not an isometry follows from considering the natural inclusions of two points $x, x' \in C_{-1}$ into $Z$, where $\norm{\induced(x) - \induced(x')} = \norm{\lip(x)-\lip(x')} < \norm{x-x'}$.
+\end{proof}
+
+\begin{lemma}
+    Let $X$ be a Banach space and let $A \subseteq X$ be closed under scaling by rationals. Then $\clo{A \cap B_X} = \clo{A} \cap B_X$.
+\end{lemma}
+
+\begin{proof}
+Since $A \cap B_X \subseteq \clo{A} \cap B_X$ and the latter is closed, we
+have $\clo{A \cap B_X} \subseteq \clo{A} \cap B_X$. It thus suffices to show
+the opposite inclusion. Fix any $a \in \clo{A} \cap B_X$ and a sequence $a_i
+\in A$ that converges to $a$. If $\norm{a} < 1$, then $a_i \in A \cap B_X$ for
+all sufficiently large $i$, from which $a \in \clo{A \cap B_X}$. If $\norm{a} =
+1$, then choose a sequence of rationals $q_i \in \QQ$ such that $\abs{q_i} \leq 1/
+\norm{a_i}$ for all sufficiently large $i$, and $q_i \to 1$. This is possible
+since $\norm{a_i} \to \norm{a} = 1$. We then have $q_i a_i \in A \cap B_X$ for all
+sufficiently large $i$, and $q_i a_i \to a$, so $a \in \clo{A \cap B_X}$. We thus
+have that $\clo{A} \cap B_X \subseteq \clo{A \cap B_X}$, so $\clo{A} \cap B_X =
+\clo{A \cap B_X}$.
+\end{proof}
+
+\newcommand\restr[2]{\ensuremath{\left.#1\right|_{#2}}}
+
+\begin{theorem}
+    Let $X$ be a Banach space and $\lip: B_X \to B_X$ be a non-expansive homeomorphism that is not an isometry. Then $X$ has a separable closed subspace $Y$ such that $\lip(B_Y) = B_Y$ and $\rho \coloneqq \restr{\lip}{B_Y} : B_Y \to B_Y$ is a non-expansive homeomorphism that is not an isometry.
+\end{theorem}
+
+\begin{proof}
+    Let $x, x' \in B_X$ be points for which $\norm{\lip(x)-\lip(x')} < \norm{x-x'}$.
+
+    Define the set function $H : 2^X \to 2^X$ as $ H(S) = \lip(S \cap B_X) \cup \lip^{-1}(S \cap B_X) \cup \QQ \cdot S \cup (S+S). $ Note that $H(S)$ is countable whenever $S$ is countable, $S \subseteq H(S)$. Moreover, since $H$ is a union of set functions which are monotonic and continuous with respect to ascending chains of set inclusions, then $H$ is monotonic and continuous with respect to ascending chains also.
+  
+    Define $S_0 = \{x,x'\}$ and $S_{n+1} = H(S_n)$ for $n \in NN$. Let $L = \bigcup_{n=0}^\infty S_n.$ Since $L$ is the limit of an ascending chain, we have $H(L) = \bigcup_{n=0}^\infty H(S_n) = \bigcup_{n=0}^\infty S_{n+1} = L$, so $L$ is a fixed point of $H$. Since $L$ is a countable union of countable sets, then $L$ is itself countable.
+  
+    Since $L$ is a fixed-point of $H$, we have that it is closed under addition and rational scaling, from which $\clo{L}$ is closed under addition and real scaling, so $\clo{L}$ is a closed subspace of $X$.
+    Since $L$ is countable, $\clo{L}$ is separable. By @rat-scaling,
+    we have that $\clo{L \cap B_X} = \clo{L} \cap B_X = B_{\clo{L}}$.
+  
+    Since $\lip$ is continuous and $L$ is closed under $\lip$, we have
+    that $\lip(\clo{L \cap B_X}) \subseteq \clo{\lip(L \cap B_X)} \subseteq \clo{L \cap B_X}$, so $\lip(B_{\clo{L}}) \subseteq B_{\clo{L}}$. Analogously, we have $\lip^{-1}(B_{\clo{L}}) \subseteq B_{\clo{L}}$. From these, we have $\lip(B_{\clo{L}}) = B_{\clo{L}}$, so $\rho$ is a well-defined non-expansive homeomorphism. Since $x, x' \in B_{\clo{L}}$, we also have that $\rho$ is not an isometry.
+\end{proof}
+
+\printbibliography
+\end{document}

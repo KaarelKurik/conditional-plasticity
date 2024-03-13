@@ -38,7 +38,7 @@
 #let lip = $f$
 
 #pad(x:10%)[
-  #smallcaps[Abstract.] We prove that for any $ell_infinity$-sum $Z = plus.circle.big_(i in [n]) X_i$ of finitely many strictly convex #box[Banach] spaces $(X_i)_(i in [n])$, an extremeness preserving 1-Lipschitz bijection $F: B_Z -> B_Z$ is an isometry, by constraining the componentwise behavior of the inverse $G=F^(-1)$ with a theorem admitting a graph-theoretic interpretation. We also show that if $X, Y$ are Banach spaces, then a bijective 1-Lipschitz non-isometry of type $B_X -> B_Y$ can be used to construct a bijective 1-Lipschitz non-isometry of type $B_X' -> B_X'$ for some Banach space $X'$, and that a homeomorphic 1-Lipschitz non-isometry of type $B_X -> B_X$ restricts to a homeomorphic #box[1-Lipschitz] non-isometry of type $B_S -> B_S$ for some separable subspace $S <= X$.
+  #smallcaps[Abstract.] We prove that for any $ell_infinity$-sum $Z = plus.circle.big_(i in [n]) X_i$ of finitely many strictly convex #box[Banach] spaces $(X_i)_(i in [n])$, an extremeness preserving 1-Lipschitz bijection $lip: B_Z -> B_Z$ is an isometry, by constraining the componentwise behavior of the inverse $ihom=lip^(-1)$ with a theorem admitting a graph-theoretic interpretation. We also show that if $X, Y$ are Banach spaces, then a bijective 1-Lipschitz non-isometry of type $B_X -> B_Y$ can be used to construct a bijective 1-Lipschitz non-isometry of type $B_X' -> B_X'$ for some Banach space $X'$, and that a homeomorphic 1-Lipschitz non-isometry of type $B_X -> B_X$ restricts to a homeomorphic #box[1-Lipschitz] non-isometry of type $B_S -> B_S$ for some separable subspace $S <= X$.
 ]
 
 = Introduction
@@ -103,7 +103,7 @@ that this is dual to the inequality $d(x,y) >= d(f(x), f(y))$ defining
 
 We begin with two theorems relating to plasticity which can be stated and proved without much preamble, and which are independent of both each other and the remainder of the article.
 
-#let induced = $f'$
+#let induced = $lip'$
 
 #theorem[Suppose there are Banach spaces $X, Y$, and a non-expansive bijection $lip : B_X -> B_Y$ such that $lip$ is not an isometry. Then there is a Banach space $Z$ and a non-expansive bijection $induced : B_Z -> B_Z$ such that $induced$ is not an isometry.]
 
