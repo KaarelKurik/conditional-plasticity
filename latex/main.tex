@@ -40,7 +40,7 @@
     We prove that for any $\ell_\infty$-sum $Z = \bigoplus_{i \in [n]} X_i$ of finitely many strictly
     convex Banach spaces $(X_i)_{i \in [n]}$, an extremeness preserving 1-Lipschitz bijection
     $\lip\colon B_Z \to B_Z$ is an isometry, by constraining the componentwise behavior of the inverse
-    $\ihom=\lip^(-1)$ with a theorem admitting a graph-theoretic interpretation.
+    $\ihom=\lip^{-1}$ with a theorem admitting a graph-theoretic interpretation.
     We also show that if $X, Y$ are Banach spaces, then a bijective 1-Lipschitz non-isometry of
     type $B_X \to B_Y$ can be used to construct a bijective 1-Lipschitz non-isometry of type
     $B_X' \to B_X'$ for some Banach space $X'$, and that a homeomorphic 1-Lipschitz non-isometry of
@@ -358,7 +358,7 @@ This can be applied to prove some more natural theorems concerning plasticity.
   Let $\lip\colon B_Z \to B_Z$ be a 1-Lipschitz bijection. If $\lip$ maps extreme points to extreme points, or $\lip(S_Z) \subseteq S_Z$, then $\lip$ is an isometry.
 \end{theorem}
 
-Our proof of \autoref{thm:natural} draws upon Nikita Leo's work in @haller:2022
+Our proof of \autoref{thm:natural} draws upon Nikita Leo's work in \autocite{haller:2022}
 for its outline.
 
 We begin with some graph-theoretic lemmas mirroring the conditions of \autoref{thm:natural}.
@@ -400,7 +400,7 @@ We now proceed with more geometric results for which a graph-theoretic analogue 
 
 For convenience in what follows, we define the functions $\gamma_i  \colon B_i \to B_{\sigma(i)}$ such that
 $\gamma_i (x) =
-\begin{cases}\norm{x} \ihom_i (x/\norm{x}) &"if" x \neq 0\\ 0 &"otherwise"\end{cases}$, and $\phi_i \colon B_{\sigma(i)} \to B_i$ as $\phi_i = \gamma_i^{-1}$. We additionally define
+\begin{cases}\norm{x} \ihom_i (\frac{x}{\norm{x}}) &"if" x \neq 0\\ 0 &"otherwise"\end{cases}$, and $\phi_i \colon B_{\sigma(i)} \to B_i$ as $\phi_i = \gamma_i^{-1}$. We additionally define
 $\gamma, \phi \colon B_Z \to B_Z$ as $\pi_{\sigma(i)} \gamma(x) = \gamma_i (\pi_i x)$, and
 $\pi_i \phi(x) = \phi_i (\pi_{\sigma(i)} x)$.
 
@@ -427,12 +427,12 @@ The reader may readily verify that $\phi = \gamma^{-1}$.
   First, define $a_i = \norm{\pi_i x}$ and fix $y \in E$ such that
   $\pi_i x = a_i \pi_i y$. Then fix $q \in B_Z$ such that $\pi_i q = a_{\sigma(i)} \pi_i \lip(y)$, and note that $q$ has norm 1 in exactly as many components as $x$, since $f(y) \in E$. Consequently, the homogeneity of $\ihom$ in $k$ components applies to $q$, from which
 
-  $ \pi_{\sigma(i)} \ihom(q) = \gamma_i (\pi_i q) = 0 = \pi_{\sigma(i)} x "      if"
-  \pi_i q = 0 $
+  \[ \pi_{\sigma(i)} \ihom(q) = \gamma_i (\pi_i q) = 0 = \pi_{\sigma(i)} x "      if"
+  \pi_i q = 0 \]
   and
-  $ \pi_{\sigma(i)} g(q) = \gamma_i (\pi_i q) = \norm{\pi_i q} \ihom_i ((\pi_i q)/\norm{\pi_i q}) = a_{\sigma(i)} \ihom_i (\pi_i \lip(y)) =_4 a_{\sigma(i)} \pi_{\sigma(i)} y = \pi_{\sigma(i)} x "    otherwise," $
+  \[ \pi_{\sigma(i)} g(q) = \gamma_i (\pi_i q) = \norm{\pi_i q} \ihom_i (\frac{\pi_i q}{\norm{\pi_i q}}) = a_{\sigma(i)} \ihom_i (\pi_i \lip(y)) =_4 a_{\sigma(i)} \pi_{\sigma(i)} y = \pi_{\sigma(i)} x \]
 
-  where equality 4 follows from $\lip(y) \in E$ and \autoref{thm:banach-factors}.
+  otherwise, where equality 4 follows from $\lip(y) \in E$ and \autoref{thm:banach-factors}.
   Consequently, we have $\ihom(q) = x$ and $\gamma(q) = x$, from which
   $q = f(x)$ and $q = \phi(x)$, so $f(x) = \phi(x)$.
 \end{proof}
@@ -470,9 +470,9 @@ The reader may readily verify that $\phi = \gamma^{-1}$.
   $\pi_i \lip(z) = -\pi_i \lip(y) \in S_i$ by the homogeneity of $\lip$ in $k$ components.
 
   We have that
-  $ \norm{\pi_i \lip(y) - \pi_i x} \leq \norm{\lip(y) - x} \leq \norm{y - \ihom(x)} = 1 - \norm{\pi_{\sigma(i)} \ihom(x)}. $
+  \[ \norm{\pi_i \lip(y) - \pi_i x} \leq \norm{\lip(y) - x} \leq \norm{y - \ihom(x)} = 1 - \norm{\pi_{\sigma(i)} \ihom(x)}. \]
 	Similarly, we have that
-  $ \norm{-\pi_i \lip(y) - \pi_i x} = \norm{\pi_i \lip(z) - \pi_i x} \leq \norm{\lip(z) - x} \leq \norm{z - \ihom(x)} = 1 + \norm{\pi_{\sigma(i)} \ihom(x)}. $
+  \[ \norm{-\pi_i \lip(y) - \pi_i x} = \norm{\pi_i \lip(z) - \pi_i x} \leq \norm{\lip(z) - x} \leq \norm{z - \ihom(x)} = 1 + \norm{\pi_{\sigma(i)} \ihom(x)}. \]
 
 
   This means that $\pi_i x$ lies in the
@@ -492,11 +492,11 @@ The reader may readily verify that $\phi = \gamma^{-1}$.
 	In this case, we have that
   $\norm{\pi_i x}\lip_i (\pi_{\sigma(i)} y) = \pi_i x$.
 	Dividing both sides by $\norm{\pi_i x}$ and applying $g_i$, we get
-	$\pi_{\sigma(i)} y = \ihom_i ((\pi_i x)/\norm{\pi_i x})$.
+	$\pi_{\sigma(i)} y = \ihom_i (\frac{\pi_i x}{\norm{\pi_i x}})$.
 	By the definition of $y$, this gives us
-  $ (\pi_{\sigma(i)} \ihom(x))/\norm{\pi_{\sigma(i)} \ihom(x)} = (\pi_{\sigma(i)} \ihom(x))/\norm{\pi_i x} = \ihom_i ((\pi_i x)/\norm{\pi_i x}), $
+  $ \frac{\pi_{\sigma(i)} \ihom(x)}{\norm{{\pi_{\sigma(i)} \ihom(x)}}} = \frac{\pi_{\sigma(i)} \ihom(x)}{\norm{\pi_i x}} = \ihom_i \frac{\pi_i x}{\norm{\pi_i x}}, $
 	from which
-	$\pi_{\sigma(i)} \ihom(x) = \norm{\pi_i x}\ihom_i ((\pi_i x)/\norm{\pi_i x}) = \pi_{\sigma(i)} \gamma(x)$
+	${\pi_{\sigma(i)} \ihom(x)} = \norm{\pi_i x}\ihom_i (\frac{\pi_i x}{\norm{\pi_i x}}) = \pi_{\sigma(i)} \gamma(x)$
 	is immediate.
 \end{proof}
 
