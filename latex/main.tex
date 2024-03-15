@@ -1,5 +1,5 @@
 \documentclass{amsart}
-\title[Conditional plasticity]{Conditional plasticity of the unit ball of the \(\ell_\infty\)‑sum of finitely many strictly convex Banach~spaces}
+\title[Conditional plasticity]{Conditional plasticity of the unit ball of the \(\ell_\infty\)-sum of finitely many strictly convex Banach~spaces}
 \author{Kaarel August Kurik}
 \address{Institute of Mathematics and Statistics, University of Tartu, Narva
 mnt 18, 51009 Tartu, Estonia}
@@ -51,7 +51,7 @@ mnt 18, 51009 Tartu, Estonia}
     $\ihom=\lip^{-1}$ with a theorem admitting a graph-theoretic interpretation.
     We also show that if $X, Y$ are Banach spaces, then a bijective 1-Lipschitz non-isometry of
     type $B_X \to B_Y$ can be used to construct a bijective 1-Lipschitz non-isometry of type
-    $B_X' \to B_X'$ for some Banach space $X'$, and that a homeomorphic 1-Lipschitz non-isometry of
+    $B_{X'} \to B_{X'}$ for some Banach space $X'$, and that a homeomorphic 1-Lipschitz non-isometry of
     type $B_X \to B_X$ restricts to a homeomorphic 1-Lipschitz non-isometry of type
     $B_S \to B_S$ for some separable subspace $S \leq X$.
 \end{abstract}
@@ -384,7 +384,7 @@ Note that the conditions $S \subseteq \ihom(S)$ and $E \subseteq \ihom(E)$ in \a
 
   We shall first consider the case where $S \subseteq \ihom(S)$.
 
-  First, fix a point $q \in S$ such that $\pi_{\sigma(i)} q = y$ and $\pi_j q in.not S_j$ for all $j \neq \sigma(i)$. By $S \subseteq \ihom(S)$, we may fix $x \in S$ such that $\ihom(x) = q$. Let $J = \{j \in [n] \colon \pi_j x \in S_j\}$. From  \autoref{thm:factors}, we know that $\pi_{\sigma(j)} \ihom(x) \in S_{\sigma(j)}$ for all $j \in J$. It follows that $J \subseteq \{i\}$. Since $x \in S$, we have that $J$ is nonempty, from which $J = \{i\}$. This allows us to use  \autoref{thm:factors} to conclude that $\ihom_i (\pi_i x) = \pi_{\sigma(i)} \ihom(x) = y$, so $y \in \ihom_i (S_i)$.
+  First, fix a point $q \in S$ such that $\pi_{\sigma(i)} q = y$ and $\pi_j q \notin S_j$ for all $j \neq \sigma(i)$. By $S \subseteq \ihom(S)$, we may fix $x \in S$ such that $\ihom(x) = q$. Let $J = \{j \in [n] \colon \pi_j x \in S_j\}$. From  \autoref{thm:factors}, we know that $\pi_{\sigma(j)} \ihom(x) \in S_{\sigma(j)}$ for all $j \in J$. It follows that $J \subseteq \{i\}$. Since $x \in S$, we have that $J$ is nonempty, from which $J = \{i\}$. This allows us to use  \autoref{thm:factors} to conclude that $\ihom_i (\pi_i x) = \pi_{\sigma(i)} \ihom(x) = y$, so $y \in \ihom_i (S_i)$.
 
   We now consider the case where $E \subseteq \ihom(E)$.
 
@@ -408,7 +408,7 @@ We now proceed with more geometric results for which a graph-theoretic analogue 
 
 For convenience in what follows, we define the functions $\gamma_i  \colon B_i \to B_{\sigma(i)}$ such that
 $\gamma_i (x) =
-\begin{cases}\norm{x} \ihom_i (\frac{x}{\norm{x}}) &"if" x \neq 0\\ 0 &"otherwise"\end{cases}$, and $\phi_i \colon B_{\sigma(i)} \to B_i$ as $\phi_i = \gamma_i^{-1}$. We additionally define
+\begin{cases}\norm{x} \ihom_i (\frac{x}{\norm{x}}) &\text{if}\ x \neq 0\\ 0 &\text{otherwise}\end{cases}$, and $\phi_i \colon B_{\sigma(i)} \to B_i$ as $\phi_i = \gamma_i^{-1}$. We additionally define
 $\gamma, \phi \colon B_Z \to B_Z$ as $\pi_{\sigma(i)} \gamma(x) = \gamma_i (\pi_i x)$, and
 $\pi_i \phi(x) = \phi_i (\pi_{\sigma(i)} x)$.
 
