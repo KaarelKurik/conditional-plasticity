@@ -81,7 +81,7 @@ in the following cases:
 - spaces whose unit sphere is a union of finite-dimensional polyhedral extreme subsets (incl. all strictly convex Banach spaces) @angosto:2019 @cascales:2016,
 - any $ell_1$-sum of strictly convex Banach spaces  (incl. $ell_1$ itself) @kadets_zavarzina:2016 @kadets_zavarzina:2018,
 - the $ell_infinity$-sum of *two* strictly convex Banach spaces @haller:2022,
-- $ell_1 plus.circle RR$ @haller:2022,
+- $ell_1 plus.circle_2 RR$ @haller:2022,
 - $C(K)$, where $K$ is a compact metrizable space with finitely many accumulation points (incl. $c tilde.equiv C(omega+1)$, i.e. the space of convergent real sequences) @fakhoury:2024 @leo:2022.
 
 In @haller:2022, it was shown (with proof essentially due to Nikita Leo) that the $ell_infinity$-sum of two strictly
